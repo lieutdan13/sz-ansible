@@ -1,0 +1,9 @@
+---
+
+- include: facts.yml
+
+- name: prepare a desktop
+  hosts: localhost
+  sudo: true
+  roles:
+    - { role: grub, tags: grub }

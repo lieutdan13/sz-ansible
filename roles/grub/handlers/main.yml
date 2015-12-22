@@ -1,0 +1,10 @@
+---
+
+- name: grub update
+  command: "update-grub"
+  register: grub_update_result
+  notify: grub update debug
+
+- name: grub update debug
+  debug: var=grub_update_result
+
