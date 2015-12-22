@@ -1,6 +1,31 @@
 #!/usr/bin/env bash
 
 sudo apt-get install git python python3
-mkdir ~/projects
+
+echo -n "Enter your email to be used for git: "
+read git_email
+echo -n "Enter your full name to be used for git: "
+read git_full_name
+echo -n "Enter your Github.com username: "
+read github_username
+
+mkdir -p ~/.config/git
+
+if [ "$git_email" != "" ]; then
+    git config --file $HOME/.config/git/config user.email $git_email
+fi
+if [ "$git_full_name" != "" ]; then
+    git config --file $HOME/.config/git/config user.name "$git_full_name"
+fi
+
+
+mkdir -p ~/projects
 cd ~/projects
-git clone https://github.com/lieutdan13/sz-ansible
+if [ ! -d ~/projects/sz-ansible ]; then
+    if [ "$github_username" != "" ]; then
+        clone_user="$github_username@"
+    else
+        clone_user=""
+    fi
+    git clone https://${clone_user}github.com/lieutdan13/sz-ansible
+fi
