@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+sudo apt-get install git python python3
+mkdir ~/projects
+cd ~/projects
+git clone https://github.com/lieutdan13/sz-ansible
