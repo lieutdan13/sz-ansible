@@ -14,6 +14,13 @@ class AnsiblePlaybook():
         ''' initialize the object '''
 
         self.pip_requirements = ['ansible']
+        self.system_deps_packages = [
+            'git',
+            'python',
+            'python-dev',
+            'python-virtualenv',
+            'python3',
+        ]
 
         self.venv_dir = os.path.join(os.environ['HOME'], '.virtualenvs/sz-Ansible-playbook')
 
@@ -33,6 +40,10 @@ class AnsiblePlaybook():
         sys.exit(subprocess.call(['ansible-playbook'] + self.playbook_args,
                                  env=os.environ,
                                  cwd=os.path.abspath(os.path.dirname(__file__))))
+
+    def bootstrap(self):
+        self._system_deps()
+        sys.exit(0)
 
     def _virtualenv_make(self, venv_dir):
         ''' make a virtualenv in the specified directory '''
@@ -59,6 +70,12 @@ class AnsiblePlaybook():
         if install:
             subprocess.call(shlex.split('pip install --upgrade {}'.format(' '.join(self.pip_requirements))))
 
+    def _system_deps(self):
+        ''' install system dependencies '''
+
+        if os.system('sudo apt-get update && sudo apt-get install -y {}'.format(' '.join(self.system_deps_packages))):
+            sys.exit("failed to install system dependencies")
+
     def parse_arguments(self):
         ''' parse command line arguments '''
 
@@ -69,6 +86,12 @@ class AnsiblePlaybook():
                           dest='inventory_file',
                           help='static inventory file',
                           type=str)
+
+        environment_inventory \
+            .add_argument('--bootstrap',
+                          dest='bootstrap',
+                          action='store_true',
+                          help='bootstrap your Ansible environment')
 
         arg_list = {"--debug": {
                         "action": 'store_true',
@@ -92,6 +115,9 @@ class AnsiblePlaybook():
         if self.wrapper_args.inventory_file:
             self.playbook_args.append('--inventory-file')
             self.playbook_args.append(self.wrapper_args.inventory_file)
+
+        if self.wrapper_args.bootstrap:
+            self.bootstrap()
 
         if self.wrapper_args.venv:
             self.venv_dir = os.path.expanduser(self.wrapper_args.venv)
