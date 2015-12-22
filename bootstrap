@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt-get install git python python3
+sudo apt-get install git python python-dev python-virtualenv python3
 
 echo -n "Enter your email to be used for git: "
 read git_email
