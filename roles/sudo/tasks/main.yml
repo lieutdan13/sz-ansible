@@ -1,0 +1,11 @@
+---
+
+- name: add user sudo rules
+  template:
+    src: sudoers_user.j2
+    dest: /etc/sudoers.d/{{ item }}
+    mode: 0440
+    owner: root
+    group: root
+  with_items:
+    - "{{ ansible_env.SUDO_USER }}"

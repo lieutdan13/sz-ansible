@@ -2,6 +2,7 @@
 - name: gather host facts
   hosts: all
   gather_facts: true
+  sudo: true
   tasks:
     - debug: var=inventory_hostname
       tags: always

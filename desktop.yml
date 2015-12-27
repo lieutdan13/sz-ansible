@@ -7,3 +7,4 @@
   sudo: true
   roles:
     - { role: grub, tags: grub }
+    - { role: sudo, tags: sudo }
