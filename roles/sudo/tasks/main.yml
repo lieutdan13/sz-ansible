@@ -1,12 +1,4 @@
 ---
 
-- name: add user sudo rules
-  sudo: True
-  template:
-    src: sudoers_user.j2
-    dest: /etc/sudoers.d/{{ item }}
-    mode: 0440
-    owner: root
-    group: root
-  with_items:
-    - "{{ ansible_env.USER }}"
+- include: do_install.yml
+  when: sudo_do_install |default(False) |bool == True or global_do_install |default(False) |bool == True
