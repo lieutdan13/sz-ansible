@@ -1,0 +1,11 @@
+# https://stribika.github.io/2015/01/04/secure-secure-shell.html
+_hardened_crypto: |
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
+
+sshd_config_opts: {
+    "hardened_crypto": "{{ _hardened_crypto }}",
+    }
+
+sshd_config_opts_enabled: []

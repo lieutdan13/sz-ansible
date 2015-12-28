@@ -1,0 +1,34 @@
+---
+
+- name: copy over ssh banner
+  copy: >
+      src=sshd.banner
+      dest=/etc/ssh/sshd.banner
+  notify: sshd_restart
+
+- name: add sshd template
+  template: >
+      src=sshd_config.j2
+      dest=/etc/ssh/sshd_config
+  tags: templates
+  notify: sshd_restart
+
+- name: check if ssh_host_ed25519_key exists
+  shell: >
+      ls /etc/ssh/ | grep ssh_host_ed25519_key
+  register: sshd_ed25519_check
+  failed_when: sshd_ed25519_check.rc > 1
+  changed_when: false
+
+- name: generate ssh_host_ed25519_key if not exists
+  command: >
+      ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
+  notify: sshd_restart
+  when: ssh_host_ed25519_key is defined and sshd_ed25519_check.rc == 1
+
+- name: check sshd_config to ensure no errors
+  command: >
+      sshd -T
+  register: sshd_config_check
+  failed_when: sshd_config_check.rc != 0
+  changed_when: false

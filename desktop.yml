@@ -5,7 +5,9 @@
 - name: prepare a desktop
   hosts: localhost
   roles:
-    - { role: apt_get_upgrade, tags: apt_get_upgrade }
-    - { role: term, tags: term }
-    - { role: grub, tags: grub }
-    - { role: sudo, tags: sudo }
+      - { role: apt_get_upgrade, tags: apt_get_upgrade }
+      - { role: term, tags: term }
+      - { role: sshd, tags: sshd,
+            sshd_config_opts_enabled: [ 'hardened_crypto' ] }
+      - { role: grub, tags: grub }
+      - { role: sudo, tags: sudo }

@@ -1,0 +1,13 @@
+---
+
+- name: sshd_reload
+  service: >
+      name=ssh
+      state=reloaded
+  failed_when: false
+
+- name: sshd_restart
+  service: >
+      name=ssh
+      state=restarted
+  failed_when: false
