@@ -1,0 +1,7 @@
+---
+
+- include: do_upgrade.yml
+  when: apt_get_upgrade_do_upgrade |default(False) | bool == True or global_do_install |default(False)|bool == True
+
+- include: do_reboot.yml
+  when: apt_get_upgrade_do_reboot |default(False) | bool == True

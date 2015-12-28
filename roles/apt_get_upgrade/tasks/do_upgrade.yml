@@ -1,0 +1,12 @@
+---
+
+- name: apt-get dist-upgrade
+  sudo: true
+  apt:
+    upgrade: dist
+    update_cache: true
+    cache_valid_time: "{{ apt_get_upgrade_cache_valid_time }}"
+  register: apt_get_upgrade_output
+  tags: packages
+
+- debug: var=apt_get_upgrade_output
