@@ -1,14 +1,4 @@
 ---
 
-- name: add default grub config
-  sudo: True
-  template:
-    src: 'default_grub.j2'
-    dest: '/etc/default/grub'
-    mode: 644
-    owner: root
-    group: root
-  notify:
-    - grub update
-  tags:
-    - templates
+- include: do_install.yml
+  when: grub_do_install |default(False) |bool == True or global_do_install |default(False) |bool == True
