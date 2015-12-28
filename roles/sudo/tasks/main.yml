@@ -1,6 +1,7 @@
 ---
 
 - name: add user sudo rules
+  sudo: True
   template:
     src: sudoers_user.j2
     dest: /etc/sudoers.d/{{ item }}

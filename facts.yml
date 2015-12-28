@@ -2,7 +2,9 @@
 - name: gather host facts
   hosts: all
   gather_facts: true
-  sudo: true
   tasks:
     - debug: var=inventory_hostname
+      tags: always
+    - debug: var=ansible_env
+      when: ansible_debug|default(False)|bool == True
       tags: always

@@ -1,6 +1,7 @@
 ---
 
 - name: add default grub config
+  sudo: True
   template:
     src: 'default_grub.j2'
     dest: '/etc/default/grub'
