@@ -4,7 +4,7 @@ if [ -x /usr/bin/xset ] && [ "x$DISPLAY" != "x" ]; then
     xset r rate 250 35
 fi
 
-if [ -f $HOME/.Xmodmap ] && [[ $(xmodmap | grep Caps_Lock) ]]; then
+if [ `which xmodmap 2>&1 >/dev/null` ] && [ -f $HOME/.Xmodmap ] && [[ $(xmodmap | grep Caps_Lock) ]]; then
     xmodmap $HOME/.Xmodmap
 fi
 
@@ -256,7 +256,6 @@ start_wicd() {
 }
 
 # [ovs]
-
 Ovs_del_brs() {
     for i in $(sudo ovs-vsctl show | grep Bridge | awk '{ print $2}'| tr -d \");
         do sudo ovs-vsctl del-br $i ;
@@ -327,7 +326,10 @@ function ifrestart {
     sudo ifdown $1 && sudo ifup $1
 }
 
-# import aliases speciic to this host
+# [projects]
+alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansible-playbook/bin/activate'
+
+# import aliases specific to this host
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
 fi
