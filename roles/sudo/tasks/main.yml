@@ -9,4 +9,4 @@
     owner: root
     group: root
   with_items:
-    - "{{ ansible_env.SUDO_USER }}"
+    - "{{ ansible_env.USER }}"
