@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+old_ps1=$PS1
+
+export PS1='$ '
+
+ansible-playbook $@
+
+export PS1=$old_ps1

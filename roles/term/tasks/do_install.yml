@@ -1,0 +1,60 @@
+---
+
+- name: install packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=latest
+      update_cache=true
+      cache_valid_time=3600
+  with_items: term_packages
+  tags: packages
+
+- name: mk urxvt-perls dir
+  file: >
+      path={{ term_perls_path }}
+      state=directory
+      mode=750
+  when: term_perls_path != ""
+
+- name: clone urxvt-perls repo from github
+  git: >
+      repo={{ git_base_repo }}/urxvt-perls
+      dest={{ term_perls_path }}
+      accept_hostkey=yes
+  when:
+      - term_perls_path != ""
+      - git_base_repo|default('') != ""
+  tags: packages
+
+- name: install templates
+  template: >
+      src={{ item }}.j2
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: term_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: term_files
+
+- name: mk bin dir
+  file: >
+      path={{ term_bin_path }}
+      state=directory
+      mode=750
+
+- name: install bin
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=750
+  with_items: term_bin
+
+- name: install vundle packages
+  shell: >
+      echo "\n" | vim -c "VundleUpdate" -c "q" -c "q"
+  tags: packages

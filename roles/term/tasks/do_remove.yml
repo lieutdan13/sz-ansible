@@ -1,0 +1,32 @@
+---
+
+- name: rm packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=absent
+      purge=true
+  with_items: term_packages
+  tags: packages
+
+- name: rm urxvt-perls
+  file: >
+      path={{ term_perls_path }}
+      state=absent
+
+- name: rm term templates
+  file: >
+      path={{ ansible_env.HOME}}/{{ item }}
+      state=absent
+  with_items: term_templates
+
+- name: rm term files
+  file: >
+      path={{ ansible_env.HOME }}/{{ item }}
+      state=absent
+  with_items: term_files
+
+- name: rm term bin
+  file: >
+      path={{ term_bin_path }}
+      state=absent

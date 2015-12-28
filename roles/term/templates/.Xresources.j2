@@ -1,0 +1,64 @@
+! Color configuration
+*foreground: #E8E8D3
+*background: #1C1C1C
+
+! colors 0-7 are normal, 8-15 bright
+
+!black
+*color0:  #3B3B3B
+*color8:  #666666
+
+!red
+*color1:  #CF6A4C
+*color9:  #873119
+
+!green
+*color2:  #70B950
+*color10:  #799D6A
+
+!yellow
+*color3:  #D8AD4C
+*color11: #A19A5D
+
+!blue
+*color4:  #597BC5
+*color12: #1D3D80
+
+!magenta
+*color5:  #A037B0
+*color13: #CE86D8
+
+!cyan
+*color6:  #71B9F8
+*color14: #95CBFC
+
+!white
+*color7:  #E8E8D3
+*color15: #F3F3E7
+
+XTerm*faceName: PragmataPro
+XTerm*faceSize: 10
+
+{% if term_perls_path != "" %}
+! urxvt conf
+
+URxvt.scrollBar: false
+
+URxvt.font: xft:dejavu sans mono:medium:size=10
+URxvt.letterSpace: -1
+
+! perls
+
+URxvt.perl-ext-common: keyboard-select,clipboard,url-select
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd: xclip -i -sel clipboard
+URxvt.clipboard.pastecmd: xclip -o -sel clipboard
+
+URxvt.keysym.M-u: perl:url-select:select_next
+{% endif %}

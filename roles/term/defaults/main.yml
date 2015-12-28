@@ -1,0 +1,37 @@
+term_perls_path: "{{ ansible_env.HOME }}/.urxvt/ext"
+term_bin_path: "{{ ansible_env.HOME }}/bin"
+
+term_packages:
+    - curl
+    - fortune
+    - glances
+    - htop
+    - httpie
+    - iftop
+    - ncdu
+    - ngrep
+    - pv
+    - rxvt-unicode-256color
+    - strace
+    - sysstat
+    - tree
+    - ttf-ancient-fonts
+    - unzip
+    - xclip
+
+term_templates:
+    - .Xmodmap
+    - .Xresources
+
+term_files:
+    - .bash_aliases
+    - .bash_logout
+    - .bashrc
+    - .git-prompt.sh
+
+term_bin:
+    - bin/Ansible-playbook
+    - bin/randomize_mac.py
+    - bin/xrandr_laptop.sh
+    - bin/xterm_colors_pacman.sh
+    - bin/xterm_colors.sh

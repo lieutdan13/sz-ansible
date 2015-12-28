@@ -6,5 +6,6 @@
   hosts: localhost
   roles:
     - { role: apt_get_upgrade, tags: apt_get_upgrade }
+    - { role: term, tags: term }
     - { role: grub, tags: grub }
     - { role: sudo, tags: sudo }
