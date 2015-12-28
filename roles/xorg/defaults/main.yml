@@ -1,0 +1,6 @@
+xorg_packages:
+    - xorg
+
+xorg_templates: []
+
+xorg_files: []

@@ -1,0 +1,24 @@
+---
+
+- name: install packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=latest
+      update_cache=true
+  with_items: xorg_packages
+  tags: packages
+
+- name: install templates
+  template: >
+      src={{ item }}.j2
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: xorg_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: xorg_files

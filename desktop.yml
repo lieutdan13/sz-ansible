@@ -11,3 +11,5 @@
             sshd_config_opts_enabled: [ 'hardened_crypto' ] }
       - { role: grub, tags: grub }
       - { role: sudo, tags: sudo }
+      # Window management
+      - { role: xorg, tags: xorg }

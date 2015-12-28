@@ -1,0 +1,22 @@
+---
+
+- name: rm packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=absent
+      purge=true
+  with_items: xorg_packages
+  tags: packages
+
+- name: rm xorg templates
+  file: >
+      path={{ ansible_env.HOME}}/{{ item }}
+      state=absent
+  with_items: xorg_templates
+
+- name: rm xorg files
+  file: >
+      path={{ ansible_env.HOME }}/{{ item }}
+      state=absent
+  with_items: xorg_files
