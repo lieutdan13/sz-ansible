@@ -107,4 +107,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # git tab-completion
-source ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+fi
