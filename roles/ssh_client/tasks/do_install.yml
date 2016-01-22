@@ -1,0 +1,25 @@
+---
+
+- name: install packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=present
+      update_cache=true
+      cache_valid_time=3600
+  tags: packages
+  with_items: ssh_client_packages
+
+- name: install templates
+  template: >
+      src={{ item.name }}.j2
+      dest={{ ssh_client_dot_path }}/{{ item.name }}
+      mode={{ item.mode }}
+  with_items: ssh_client_templates
+
+- name: add {{ ansible_env.USER }} to fuse
+  sudo: true
+  user: >
+    name={{ ansible_env.USER }}
+    append=true
+    groups=fuse

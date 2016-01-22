@@ -1,0 +1,13 @@
+ssh_client_dot_path: "{{ ansible_env.HOME }}/.ssh/"
+
+ssh_client_packages:
+    - openssh-client
+    - sshfs
+
+ssh_client_templates:
+#    - { name: config, mode: '750' }
+    - { name: id_rsa, mode: '600' }
+    - { name: id_rsa.pub, mode: '644' }
+    - { name: id_ed25519, mode: '600' }
+    - { name: id_ed25519.pub, mode: '644' }
+    - { name: authorized_keys, mode: '755' }
