@@ -13,7 +13,7 @@ class AnsiblePlaybook():
     def __init__(self):
         ''' initialize the object '''
 
-        self.pip_requirements = ['ansible']
+        self.pip_requirements = ['ansible<2']
         self.system_deps_packages = [
             'git',
             'python',

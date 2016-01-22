@@ -1,1 +1,1 @@
-> $HOME/.bash_history
+#> $HOME/.bash_history

@@ -3,3 +3,4 @@
 
 [localhost:vars]
 term_perls_path=""
+inventory_type=local
