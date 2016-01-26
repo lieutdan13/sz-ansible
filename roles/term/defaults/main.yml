@@ -28,6 +28,7 @@ term_files:
     - .bash_logout
     - .bashrc
     - .git-prompt.sh
+    - .vimrc
 
 term_bin:
     - bin/Ansible-playbook

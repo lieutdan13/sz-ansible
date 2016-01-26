@@ -15,3 +15,4 @@
       - { role: ssh_client, tags: ssh_client }
       # Window management
       - { role: xorg, tags: xorg }
+      - { role: i3, tags: i3 }
