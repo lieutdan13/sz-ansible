@@ -1,0 +1,9 @@
+i3_packages:
+    - i3
+    - i3lock
+    - ranger
+
+i3_templates:
+    - .i3/config
+    - .i3status.conf
+

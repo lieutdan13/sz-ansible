@@ -1,0 +1,15 @@
+---
+
+- name: rm i3
+  sudo: true
+  apt: >
+    name=i3
+    state=absent
+  tags: packages
+
+- name: rm i3 templates
+  file: >
+    path={{ ansible_env.HOME }}/{{ item }}
+    state=absent
+  with_items: i3_templates
+  tags: templates

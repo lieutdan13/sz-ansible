@@ -1,0 +1,42 @@
+---
+
+- name: add backports repo
+  sudo: true
+  apt_repository: >
+    repo='deb http://http.debian.net/debian wheezy-backports main'
+    state=present
+  when: ansible_distribution == 'Debian'
+  tags: packages
+
+- name: install i3wm from backports
+  sudo: true
+  apt: >
+    name={{ item }}
+    state=latest
+    update_cache=true
+    default_release=wheezy-backports
+  when: ansible_distribution == 'Debian'
+  with_items: i3_packages
+  tags: packages
+
+- name: install i3wm on ubuntu
+  sudo: true
+  apt: >
+    name={{ item }}
+    state=latest
+    update_cache=true
+  when: ansible_distribution == 'Ubuntu'
+  with_items: i3_packages
+  tags: packages
+
+- name: create .i3 dir
+  file: >
+    path={{ ansible_env.HOME }}/.i3
+    state=directory
+    mode=770
+
+- name: install i3 templates
+  template: >
+    src={{ item }}
+    dest={{ ansible_env.HOME }}/{{ item }}
+  with_items: i3_templates
