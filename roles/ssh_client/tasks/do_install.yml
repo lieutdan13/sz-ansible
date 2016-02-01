@@ -8,7 +8,10 @@
       update_cache=true
       cache_valid_time=3600
   tags: packages
+  register: ssh_client_packages_output
   with_items: ssh_client_packages
+
+- debug: var=ssh_client_packages_output
 
 - name: install templates
   template: >
