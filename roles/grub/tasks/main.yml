@@ -1,4 +1,0 @@
----
-
-- include: do_install.yml
-  when: grub_do_install |default(False) |bool == True or global_do_install |default(False) |bool == True

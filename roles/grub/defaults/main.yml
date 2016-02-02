@@ -1,5 +1,0 @@
----
-
-grub_gfxmode: '1024x768'
-grub_hidden_timeout: 3
-grub_cmdline_linux_default: 'text nomdmonddf nomdmonisw'

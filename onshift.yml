@@ -11,7 +11,7 @@
       - { role: sshd, tags: sshd,
             sshd_config_opts_enabled: [ 'hardened_crypto' ]
         }
-      - { role: grub, tags: grub }
+      - { role: boot, tags: boot }
       - { role: sudo, tags: sudo }
       - { role: ssh_client, tags: ssh_client }
       - { role: git, tags: git,

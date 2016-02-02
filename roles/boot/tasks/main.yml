@@ -1,0 +1,4 @@
+---
+
+- include: do_install.yml
+  when: boot_do_install |default(False) |bool == True or global_do_install |default(False) |bool == True

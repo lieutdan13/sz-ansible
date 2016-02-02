@@ -1,0 +1,5 @@
+---
+
+boot_grub_gfxmode: '1024x768'
+boot_grub_hidden_timeout: 3
+boot_grub_cmdline_linux_default: 'text nomdmonddf nomdmonisw'
