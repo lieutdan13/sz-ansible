@@ -1,0 +1,11 @@
+---
+
+- name: remove development packages on ubuntu
+  sudo: true
+  apt: >
+    name={{ item }}
+    state=absent
+    update_cache=true
+  when: ansible_distribution == 'Ubuntu'
+  with_items: development_packages
+  tags: packages

@@ -1,0 +1,31 @@
+---
+
+- name: install development packages on ubuntu
+  sudo: true
+  apt: >
+    name={{ item }}
+    state=latest
+    update_cache=true
+  when: ansible_distribution == 'Ubuntu'
+  with_items: development_packages
+  register: development_packages_output
+  tags: packages
+
+- name: show installation output
+  debug: var=development_packages_output
+
+- name: install development environment packages
+  sudo: true
+  apt: >
+    name={{ item.value }}
+    state=latest
+    update_cache=true
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - item.key in development_environments
+  with_dict: "{{ development_environment_packages }}"
+  register: development_environment_packages_output
+  tags: packages
+
+- name: show installation output
+  debug: var=development_environment_packages_output

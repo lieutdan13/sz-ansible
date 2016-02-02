@@ -1,0 +1,21 @@
+---
+
+development_packages:
+    - git
+    - curl
+    - httpie
+
+development_environment_packages:
+    mysql:
+        - mysql-client-5.6
+    php:
+        - php5
+        - php5-json
+        - php5-mysql
+        - php5-pgsql
+        - php5-sqlite
+    postgresql:
+        - postgresql-client-9.3
+    python:
+        - python3.4
+        - python-virtualenv
