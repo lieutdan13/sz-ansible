@@ -1,7 +1,7 @@
 ---
 
 - name: add default grub config
-  sudo: True
+  become: true
   template:
     src: 'default/grub.j2'
     dest: '/etc/default/grub'
@@ -14,7 +14,7 @@
     - templates
 
 - name: add failsafe config
-  sudo: True
+  become: true
   template:
     src: 'init/failsafe.conf.j2'
     dest: '/etc/init/failsafe.conf'

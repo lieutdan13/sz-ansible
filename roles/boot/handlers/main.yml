@@ -1,7 +1,7 @@
 ---
 
 - name: grub update
-  sudo: True
+  become: true
   command: "update-grub"
   register: grub_update_result
   notify: grub update debug

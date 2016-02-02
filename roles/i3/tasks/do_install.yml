@@ -1,7 +1,7 @@
 ---
 
 - name: add backports repo
-  sudo: true
+  become: true
   apt_repository: >
     repo='deb http://http.debian.net/debian wheezy-backports main'
     state=present
@@ -9,7 +9,7 @@
   tags: packages
 
 - name: install i3wm from backports
-  sudo: true
+  become: true
   apt: >
     name={{ item }}
     state=latest
@@ -23,7 +23,7 @@
 - debug: var=i3_packages_output
 
 - name: install i3wm on ubuntu
-  sudo: true
+  become: true
   apt: >
     name={{ item }}
     state=latest

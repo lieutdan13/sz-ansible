@@ -1,7 +1,7 @@
 ---
 
 - name: install development packages on ubuntu
-  sudo: true
+  become: true
   apt: >
     name={{ item }}
     state=latest
@@ -15,7 +15,7 @@
   debug: var=development_packages_output
 
 - name: install development environment packages
-  sudo: true
+  become: true
   apt: >
     name={{ item.value }}
     state=latest

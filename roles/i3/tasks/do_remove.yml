@@ -1,7 +1,7 @@
 ---
 
 - name: rm i3
-  sudo: true
+  become: true
   apt: >
     name=i3
     state=absent

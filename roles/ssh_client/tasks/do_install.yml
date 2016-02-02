@@ -1,7 +1,7 @@
 ---
 
 - name: install packages
-  sudo: true
+  become: true
   apt: >
       name={{ item }}
       state=present
@@ -21,7 +21,7 @@
   with_items: ssh_client_templates
 
 - name: add {{ ansible_env.USER }} to fuse
-  sudo: true
+  become: true
   user: >
     name={{ ansible_env.USER }}
     append=true
