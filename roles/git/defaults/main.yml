@@ -1,0 +1,14 @@
+git_packages:
+    - git
+
+git_templates:
+    - .gitconfig
+    - .gitignore_global
+
+git_files:
+    - .git-completion.bash
+
+git_config:
+    user:
+        name: 'ENTERYOURUSERNAME'
+        email: 'ENTERYOUREMAIL'

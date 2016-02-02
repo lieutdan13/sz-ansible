@@ -14,8 +14,19 @@
       - { role: grub, tags: grub }
       - { role: sudo, tags: sudo }
       - { role: ssh_client, tags: ssh_client }
+      - { role: git, tags: git,
+            git_config: {
+                user: {
+                    name: 'Dan Schaefer',
+                    email: 'dan@schaeferzone.net'
+                }
+            }
+        }
       - { role: development, tags: development,
-            development_environments: [php, mysql]
+            development_environments: [
+                php,
+                mysql,
+            ]
         }
       # Window management
       - { role: xorg, tags: xorg }

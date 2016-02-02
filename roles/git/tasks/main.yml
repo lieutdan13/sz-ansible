@@ -1,0 +1,7 @@
+---
+
+- include: do_install.yml
+  when: git_do_install |default(False) |bool == true or global_do_install |default(False) |bool == True
+
+- include: do_remove.yml
+  when: git_do_remove |default(False) |bool == true

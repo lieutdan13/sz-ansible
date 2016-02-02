@@ -1,0 +1,24 @@
+---
+
+- name: install packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=present
+      update_cache=true
+  tags: packages
+  with_items: git_packages
+
+- name: install templates
+  template: >
+      src={{ item }}.j2
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: git_templates
+
+- name: install files
+  copy: >
+      src={{ item }}
+      dest={{ ansible_env.HOME }}/{{ item }}
+      mode=640
+  with_items: git_files

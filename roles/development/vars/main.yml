@@ -1,7 +1,6 @@
 ---
 
 development_packages:
-    - git
     - curl
     - httpie
 

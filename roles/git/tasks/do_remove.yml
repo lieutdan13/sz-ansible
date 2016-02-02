@@ -1,0 +1,22 @@
+---
+
+- name: rm packages
+  sudo: true
+  apt: >
+      name={{ item }}
+      state=absent
+      purge=true
+  with_items: git_packages
+  tags: packages
+
+- name: rm git templates
+  file: >
+      path={{ ansible_env.HOME}}/{{ item }}
+      state=absent
+  with_items: git_templates
+
+- name: rm git files
+  file: >
+      path={{ ansible_env.HOME}}/{{ item }}
+      state=absent
+  with_items: git_files
