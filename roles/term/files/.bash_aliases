@@ -375,3 +375,7 @@ fi)'
 if ! echo $PATH | grep -q "$HOME/bin"; then
     export PATH=$PATH:$HOME/bin
 fi
+
+if ! echo $PATH | grep -q "$HOME/.composer/vendor/bin"; then
+    export PATH=$PATH:$HOME/.composer/vendor/bin
+fi
