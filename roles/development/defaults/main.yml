@@ -1,3 +1,6 @@
 ---
 
 development_environments: []
+
+development_php_bin:
+    - bin/composer

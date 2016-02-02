@@ -29,3 +29,7 @@
 
 - name: show installation output
   debug: var=development_environment_packages_output
+
+- name: include php development tasks
+  include: do_install_php.yml
+  when: "'php' in development_environments"
