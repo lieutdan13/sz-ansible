@@ -5,6 +5,7 @@ development_packages: []
 development_environment_packages:
     mysql:
         - mysql-client-5.6
+        - mysql-client-core-5.6
     php:
         - php5
         - php5-json
