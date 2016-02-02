@@ -3,12 +3,23 @@
 - name: add default grub config
   sudo: True
   template:
-    src: 'default_grub.j2'
+    src: 'default/grub.j2'
     dest: '/etc/default/grub'
     mode: 644
     owner: root
     group: root
   notify:
     - grub update
+  tags:
+    - templates
+
+- name: add failsafe config
+  sudo: True
+  template:
+    src: 'init/failsafe.conf.j2'
+    dest: '/etc/init/failsafe.conf'
+    mode: 644
+    owner: root
+    group: root
   tags:
     - templates
