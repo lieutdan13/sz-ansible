@@ -232,7 +232,7 @@ start_agent() {
     . "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add;
 }
-start_agent 2>&1 > /dev/null
+#start_agent 2>&1 > /dev/null
 
 # [sysadmin]
 Sysadmin_au() {
