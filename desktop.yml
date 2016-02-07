@@ -24,8 +24,9 @@
         }
       - { role: development, tags: development,
             development_environments: [
-                php,
                 mysql,
+                php,
+                sqlite,
             ]
         }
       # Window management
