@@ -3,6 +3,9 @@ i3_packages:
     - i3lock
     - ranger
 
+i3_packages_forced:
+    - i3-autobuild-keyring
+
 i3_templates:
     - .i3/config
     - .i3status.conf

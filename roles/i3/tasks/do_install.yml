@@ -8,6 +8,14 @@
   when: ansible_distribution == 'Debian'
   tags: packages
 
+- name: add i3wm ubuntu repo
+  become: true
+  apt_repository: >
+    repo='deb http://build.i3wm.org/ubuntu/trusty trusty main'
+    state=present
+  when: ansible_distribution == 'Ubuntu'
+  tags: packages
+
 - name: install i3wm from backports
   become: true
   apt: >
@@ -16,7 +24,23 @@
     update_cache=true
     default_release=wheezy-backports
   when: ansible_distribution == 'Debian'
-  with_items: i3_packages
+  with_items:
+    - "{{ i3_packages }}"
+  register: i3_packages_output
+  tags: packages
+
+- debug: var=i3_packages_output
+
+- name: install i3 forced packages on ubuntu
+  become: true
+  apt: >
+    name={{ item }}
+    state=latest
+    update_cache=true
+    force=true
+  when: ansible_distribution == 'Ubuntu'
+  with_items:
+    - "{{ i3_packages_forced }}"
   register: i3_packages_output
   tags: packages
 
@@ -29,7 +53,8 @@
     state=latest
     update_cache=true
   when: ansible_distribution == 'Ubuntu'
-  with_items: i3_packages
+  with_items:
+    - "{{ i3_packages }}"
   register: i3_packages_output
   tags: packages
 
@@ -45,4 +70,5 @@
   template: >
     src={{ item }}
     dest={{ ansible_env.HOME }}/{{ item }}
-  with_items: i3_templates
+  with_items:
+    - "{{ i3_templates }}"
