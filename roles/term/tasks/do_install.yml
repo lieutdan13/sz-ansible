@@ -8,7 +8,7 @@
       update_cache=true
       cache_valid_time=3600
   register: term_install_packages_result
-  with_items: term_packages
+  with_items: "{{ term_packages }}"
   tags: packages
 
 - name: install packages result
@@ -36,14 +36,14 @@
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
-  with_items: term_templates
+  with_items: "{{ term_templates }}"
 
 - name: install files
   copy: >
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
-  with_items: term_files
+  with_items: "{{ term_files }}"
 
 - name: mk bin dir
   file: >
@@ -56,7 +56,7 @@
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=750
-  with_items: term_bin
+  with_items: "{{ term_bin }}"
 
 - name: install vundle packages
   shell: >
