@@ -5,4 +5,5 @@
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=750
-  with_items: development_php_bin
+  with_items:
+    - "{{ development_php_bin }}"
