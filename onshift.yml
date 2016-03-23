@@ -24,8 +24,10 @@
         }
       - { role: development, tags: development,
             development_environments: [
-                 postgresql,
-                 python,
+                mysql,
+                php,
+                postgresql,
+                python,
             ]
         }
       # Window management
