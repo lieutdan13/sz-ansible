@@ -28,6 +28,7 @@
                 php,
                 postgresql,
                 python,
+                sqlite,
             ]
         }
       # Window management
