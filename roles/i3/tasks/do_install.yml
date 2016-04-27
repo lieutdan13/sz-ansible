@@ -60,6 +60,12 @@
 
 - debug: var=i3_packages_output
 
+- name: create a directory for screenshots
+  file: >
+    path={{ ansible_env.HOME }}/{{ i3_screenshot_directory }}
+    state=directory
+    mode=770
+
 - name: create .i3 dir
   file: >
     path={{ ansible_env.HOME }}/.i3

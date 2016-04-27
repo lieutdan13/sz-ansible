@@ -99,6 +99,11 @@ bindsym $mod+Shift+asterisk move container to workspace 8
 bindsym $mod+Shift+parenleft move container to workspace 9
 bindsym $mod+Shift+parenright move container to workspace 10
 
+# screenshots
+bindsym Print exec scrot $HOME/{{ i3_screenshot_directory }}/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym $Alt+Print exec scrot -u $HOME/{{ i3_screenshot_directory }}/`date +%Y-%m-%d_%H:%M:%S`.png
+bindsym --release $Alt+Shift+Print exec scrot -s $HOME/{{ i3_screenshot_directory }}/`date +%Y-%m-%d_%H:%M:%S`.png
+
 # reload the configuration file
 bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -148,8 +153,8 @@ bindsym XF86AudioMute exec amixer -D pulse sset Master toggle # mute sound
 # finds out, if available)
 bar {
         status_command i3status
-        bindsym button4 nop
-        bindsym button5 nop
+        bindsym button4 exec --no-startup-id /bin/true
+        bindsym button5 exec --no-startup-id /bin/true
 }
 
 #colors
