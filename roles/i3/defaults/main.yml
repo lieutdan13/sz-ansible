@@ -2,9 +2,12 @@ i3_packages:
     - i3
     - i3lock
     - ranger
+    - scrot
 
 i3_packages_forced:
     - i3-autobuild-keyring
+
+i3_screenshot_directory: 'pictures/screenshots'
 
 i3_templates:
     - .i3/config
