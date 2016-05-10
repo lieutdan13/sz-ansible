@@ -12,6 +12,7 @@ term_packages:
     - ngrep
     - pv
     - rxvt-unicode-256color
+    - sshpass
     - strace
     - sysstat
     - tree

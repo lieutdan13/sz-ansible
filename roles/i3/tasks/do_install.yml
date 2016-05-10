@@ -11,7 +11,7 @@
 - name: add i3wm ubuntu repo
   become: true
   apt_repository: >
-    repo='deb http://build.i3wm.org/ubuntu/trusty trusty main'
+    repo='deb http://debian.sur5r.net/i3/ trusty universe'
     state=present
   when: ansible_distribution == 'Ubuntu'
   tags: packages
