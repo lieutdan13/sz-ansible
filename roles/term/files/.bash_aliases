@@ -265,11 +265,19 @@ Ovs_del_brs() {
 # [known_hosts]
 function forget_known_host() {
     h=$1
+    p=$2
     i=`gethostip $h | awk '{print $2}'`
     f=`readlink -f ~/.ssh/known_hosts`
-    ssh-keygen -f "$f" -R $h
+    if [ -n "$p" ]; then
+        keygen_h="[$h]:$p"
+        keygen_i="[$i]:$p"
+    else
+        keygen_h="$h"
+        keygen_i="$i"
+    fi
+    ssh-keygen -f "$f" -R $keygen_h
     if [ "x$i" != "x" ]; then
-        ssh-keygen -f "$f" -R $i
+        ssh-keygen -f "$f" -R $keygen_i
     fi
 }
 
