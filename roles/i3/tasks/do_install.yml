@@ -31,16 +31,16 @@
 
 - debug: var=i3_packages_output
 
-- name: install i3 forced packages on ubuntu
+- name: install i3 unauthenticated packages on ubuntu
   become: true
   apt: >
     name={{ item }}
     state=latest
     update_cache=true
-    force=true
+    allow_unauthenticated=yes
   when: ansible_distribution == 'Ubuntu'
   with_items:
-    - "{{ i3_packages_forced }}"
+    - "{{ i3_packages_unauthenticated }}"
   register: i3_packages_output
   tags: packages
 

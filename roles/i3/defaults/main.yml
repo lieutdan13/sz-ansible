@@ -4,8 +4,8 @@ i3_packages:
     - ranger
     - scrot
 
-i3_packages_forced:
-    - i3-autobuild-keyring
+i3_packages_unauthenticated:
+    - sur5r-keyring
 
 i3_screenshot_directory: 'pictures/screenshots'
 

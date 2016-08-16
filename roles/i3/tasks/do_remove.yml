@@ -11,5 +11,5 @@
   file: >
     path={{ ansible_env.HOME }}/{{ item }}
     state=absent
-  with_items: i3_templates
+  with_items: "{{ i3_templates }}"
   tags: templates
