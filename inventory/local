@@ -1,5 +1,5 @@
-[localhost]
+[localhosts]
 127.0.0.1 ansible_connection=local
 
-[localhost:vars]
+[localhosts:vars]
 inventory_type=local

@@ -3,7 +3,7 @@
 - include: facts.yml
 
 - name: prepare a desktop
-  hosts: localhost
+  hosts: localhosts
   roles:
       - { role: secrets, tags: [always,secrets] }
       - { role: apt_get_upgrade, tags: apt_get_upgrade }
