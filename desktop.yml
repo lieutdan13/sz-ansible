@@ -25,6 +25,7 @@
       - { role: development, tags: development,
             development_environments: [
                 mysql,
+                npm,
                 php,
                 ruby,
                 sqlite,
