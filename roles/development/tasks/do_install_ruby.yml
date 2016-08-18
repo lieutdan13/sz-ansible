@@ -1,0 +1,5 @@
+---
+
+- name: update alternatives to prioritize ruby 2.2
+  become: True
+  alternatives: name=ruby path=/usr/bin/ruby2.2

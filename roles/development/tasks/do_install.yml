@@ -1,5 +1,14 @@
 ---
 
+- name: add brightbox ppa
+  become: true
+  apt_repository: >
+    repo=ppa:brightbox/ruby-ng
+  when:
+    - ansible_distribution == 'Ubuntu'
+    - "{{ 'ruby' in development_environments }}"
+  tags: packages
+
 - name: install development packages on ubuntu
   become: true
   apt: >
@@ -34,3 +43,7 @@
 - name: include php development tasks
   include: do_install_php.yml
   when: "'php' in development_environments"
+
+- name: include ruby development tasks
+  include: do_install_ruby.yml
+  when: "'ruby' in development_environments"
