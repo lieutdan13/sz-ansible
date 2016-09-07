@@ -1,5 +1,6 @@
 git_packages:
     - git
+    - gitk
 
 git_templates:
     - .gitconfig
