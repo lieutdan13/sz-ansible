@@ -170,4 +170,4 @@ assign [class="^Gvim$"] 3
 assign [class="^Firefox$"] 4
 
 # execute
-exec_always {{ ansible_env.HOME }}/.i3/battery-indicator
+exec_always $HOME/.i3/battery-indicator
