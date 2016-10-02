@@ -74,7 +74,8 @@
 
 - name: install i3 templates
   template: >
-    src={{ item }}
-    dest={{ ansible_env.HOME }}/{{ item }}
+    src={{ item.src }}
+    dest={{ ansible_env.HOME }}/{{ item.src }}
+    mode={{ item.get('mode', 664) }}
   with_items:
     - "{{ i3_templates }}"

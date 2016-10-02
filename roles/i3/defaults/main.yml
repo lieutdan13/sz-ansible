@@ -1,15 +1,7 @@
-i3_packages:
-    - i3
-    - i3lock
-    - ranger
-    - scrot
+---
 
-i3_packages_unauthenticated:
-    - sur5r-keyring
+i3_battery_safe_percent: 30
+i3_battery_warn_percent: 15
+i3_battery_crit_percent: 5
 
 i3_screenshot_directory: 'pictures/screenshots'
-
-i3_templates:
-    - .i3/config
-    - .i3status.conf
-

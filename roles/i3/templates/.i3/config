@@ -168,3 +168,6 @@ client.urgent           #799d6a  #1C1C1C  #E8E8D3
 # custom loads
 assign [class="^Gvim$"] 3
 assign [class="^Firefox$"] 4
+
+# execute
+exec_always {{ ansible_env.HOME }}/.i3/battery-indicator
