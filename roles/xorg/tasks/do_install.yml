@@ -6,7 +6,8 @@
       name={{ item }}
       state=latest
       update_cache=true
-  with_items: xorg_packages
+  with_items:
+    - "{{ xorg_packages }}"
   register: xorg_packages_output
   tags: packages
 
@@ -17,11 +18,13 @@
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
-  with_items: xorg_templates
+  with_items:
+    - "{{ xorg_templates }}"
 
 - name: install files
   copy: >
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
-  with_items: xorg_files
+  with_items:
+    - "{{ xorg_files }}"

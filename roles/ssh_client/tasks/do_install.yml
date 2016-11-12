@@ -7,9 +7,10 @@
       state=present
       update_cache=true
       cache_valid_time=3600
-  tags: packages
+  with_items:
+    - "{{ ssh_client_packages }}"
   register: ssh_client_packages_output
-  with_items: ssh_client_packages
+  tags: packages
 
 - debug: var=ssh_client_packages_output
 
@@ -18,7 +19,8 @@
       src={{ item.name }}.j2
       dest={{ ssh_client_dot_path }}/{{ item.name }}
       mode={{ item.mode }}
-  with_items: ssh_client_templates
+  with_items:
+    - "{{ ssh_client_templates }}"
 
 - name: add {{ ansible_env.USER }} to fuse
   become: true

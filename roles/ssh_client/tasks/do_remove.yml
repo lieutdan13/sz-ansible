@@ -4,5 +4,5 @@
   file: >
       path={{ ssh_client_dot_path }}/{{ item.name }}
       state=absent
-  with_items: ssh_client_templates
-
+  with_items:
+    - "{{ ssh_client_templates }}
