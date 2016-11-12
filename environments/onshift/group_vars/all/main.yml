@@ -1,0 +1,7 @@
+---
+
+development_environments:
+  - mysql
+  - php
+  - postgresql
+  - python

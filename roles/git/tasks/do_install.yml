@@ -6,8 +6,13 @@
       name={{ item }}
       state=present
       update_cache=true
-  tags: packages
   with_items: "{{ git_packages }}"
+  register: git_install_packages
+  tags: packages
+
+- name: display output of installing packages
+  debug:
+    var: git_install_packages
 
 - name: install templates
   template: >

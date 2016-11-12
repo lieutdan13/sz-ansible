@@ -1,0 +1,4 @@
+---
+
+my_var: "this is set via the global env"
+global_var: "this is set via the global env"

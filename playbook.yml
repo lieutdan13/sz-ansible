@@ -1,0 +1,13 @@
+---
+
+- name: prepare a desktop
+  hosts: localhosts
+  tasks:
+    - name: display my_var
+      debug: var=my_var
+    - name: display local_var
+      debug: var=local_var
+    - name: display global_var
+      debug: var=global_var
+    - name: display other_var
+      debug: var=other_var

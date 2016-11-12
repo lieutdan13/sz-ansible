@@ -1,0 +1,3 @@
+---
+
+other_var: "this var is set in the global env in the other.yml file"

@@ -14,23 +14,8 @@
       - { role: boot, tags: boot }
       - { role: sudo, tags: sudo }
       - { role: ssh_client, tags: ssh_client }
-      - { role: git, tags: git,
-            git_config: {
-                user: {
-                    name: 'Dan Schaefer',
-                    email: 'dan@schaeferzone.net'
-                }
-            }
-        }
-      - { role: development, tags: development,
-            development_environments: [
-                mysql,
-                npm,
-                php,
-                ruby,
-                sqlite,
-            ]
-        }
+      - { role: git, tags: git }
+      - { role: development, tags: development }
       # Window management
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }

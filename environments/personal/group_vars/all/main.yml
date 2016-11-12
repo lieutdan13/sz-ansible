@@ -1,0 +1,11 @@
+---
+
+my_var: "this is set via the local env"
+local_var: "this is set via the local env"
+
+development_environments:
+  - mysql
+  - npm
+  - php
+  - ruby
+  - sqlite
