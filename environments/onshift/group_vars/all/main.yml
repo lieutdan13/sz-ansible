@@ -5,3 +5,4 @@ development_environments:
   - php
   - postgresql
   - python
+  - ruby
