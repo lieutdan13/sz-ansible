@@ -7,3 +7,9 @@
       mode=750
   with_items:
     - "{{ development_php_bin }}"
+
+- name: enable php modules
+  become: true
+  command: php5enmod {{ item }}
+  with_items:
+    - "{{ development_php_mods }}"

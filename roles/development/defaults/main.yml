@@ -4,3 +4,6 @@ development_environments: []
 
 development_php_bin:
     - bin/composer
+
+development_php_mods:
+    - mcrypt
