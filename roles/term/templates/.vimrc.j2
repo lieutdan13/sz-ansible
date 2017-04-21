@@ -1,24 +1,28 @@
-" Include default global config
-" source /etc/vimrc
+" {{ ansible_managed }}
+
+" include default global config
+if filereadable("/etc/vim/vimrc")
+  source /etc/vim/vimrc
+endif
 
 " 1,000 lines for copy buffer
 set viminfo='20,<1000,s1000
 
-" Remember last line in file
+" remember last line in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Disable arrow keys
+" disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Line Numbers
+" line Numbers
 set number
 
-" Highlight all search results
+" highlight all search results
 hi Search cterm=NONE ctermfg=black
 set hlsearch
 
@@ -40,3 +44,7 @@ set autoindent
 
 " add an extra indent to python methods, for example
 set smartindent
+
+" split windows to the right and below
+set splitright
+set splitbelow

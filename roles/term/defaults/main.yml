@@ -23,13 +23,13 @@ term_packages:
 term_templates:
     - .Xmodmap
     - .Xresources
+    - .vimrc
 
 term_files:
     - .bash_aliases
     - .bash_logout
     - .bashrc
     - .git-prompt.sh
-    - .vimrc
 
 term_bin:
     - bin/Ansible-playbook
