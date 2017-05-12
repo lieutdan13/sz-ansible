@@ -23,6 +23,7 @@ term_packages:
 term_templates:
     - .Xmodmap
     - .Xresources
+    - .xinitrc
     - .vimrc
 
 term_files:
