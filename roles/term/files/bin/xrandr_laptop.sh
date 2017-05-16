@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+# TODO: pipe all greps to true and compare to an empty string
+#set -euo pipefail
 
 xrandr_out=`xrandr`
 echo $xrandr_out | grep 'eDP1 connected' 2>&1 >/dev/null
