@@ -19,6 +19,9 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" increase maxmempattern
+set maxmempattern=2000
+
 " line Numbers
 set number
 
@@ -48,3 +51,12 @@ set smartindent
 " split windows to the right and below
 set splitright
 set splitbelow
+
+" activates filetype detection
+filetype plugin indent on
+
+" activates syntax highlighting among other things
+syntax on
+
+" activates syntax highlighting from the start of the file
+autocmd BufEnter * :syntax sync fromstart
