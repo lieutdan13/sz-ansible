@@ -5,8 +5,8 @@ local_var: "this is set via the local env"
 
 development_environments:
   - docker
-  - mysql
-  - npm
-  - php
-  - ruby
-  - sqlite
+  #- mysql
+  #- npm
+  #- php
+  #- ruby
+  #- sqlite
