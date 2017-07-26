@@ -264,6 +264,11 @@ start_wicd() {
     wicd-curses
 }
 
+disconnect_laptop() {
+    sudo service wicd restart
+    ~/bin/xrandr_laptop.sh
+}
+
 # [ovs]
 Ovs_del_brs() {
     for i in $(sudo ovs-vsctl show | grep Bridge | awk '{ print $2}'| tr -d \");

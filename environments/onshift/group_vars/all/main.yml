@@ -1,8 +1,5 @@
 ---
 
 development_environments:
-  - mysql
-  - php
-  - postgresql
-  - python
-  - ruby
+    - docker
+    - python

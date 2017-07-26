@@ -50,10 +50,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+semicolon split h
+bindsym $mod+semicolon split v
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split h
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -166,8 +166,10 @@ client.unfocused        #1C1C1C  #1C1C1C  #E8E8D3  #1C1C1C
 client.urgent           #799d6a  #1C1C1C  #E8E8D3
 
 # custom loads
-assign [class="^Gvim$"] 3
-assign [class="^Firefox$"] 4
+assign [class="^Gvim$"] 2
+assign [class="^Gjenkins$"] 4
+assign [class="^Firefox$"] 5
+assign [class="^hipchat$"] 6
 
 # execute
 exec_always $HOME/.i3/battery-indicator
