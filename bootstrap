@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+set -e
 
+curl -o ./Ansible-playbook https://raw.githubusercontent.com/lieutdan13/sz-ansible/master/Ansible-playbook
+chmod +x Ansible-playbook
 ./Ansible-playbook --bootstrap
 
 echo -n "Enter your email to be used for git: "
