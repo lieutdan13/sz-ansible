@@ -1,6 +1,7 @@
 ---
 
 i3_packages:
+    - acpi
     - i3
     - i3lock
     - i3status
