@@ -175,6 +175,9 @@ function sba {
     source $_Ansible_dotfiles_path/roles/term/files/.bash_aliases
 }
 
+# [docker]
+alias dco='docker-compose'
+
 # [git]
 alias g='git'
 alias gl='git log --stat'
@@ -267,6 +270,12 @@ start_wicd() {
 disconnect_laptop() {
     sudo service wicd restart
     ~/bin/xrandr_laptop.sh
+}
+
+swap_procs() {
+    for file in /proc/*/status; do
+        awk '/VmSwap|Name|Pid/{printf $2 " " $3}END{ print ""}' $file ;
+    done | sort -k 2 -n -r | less
 }
 
 # [ovs]
