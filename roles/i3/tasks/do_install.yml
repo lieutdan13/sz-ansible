@@ -13,7 +13,9 @@
   apt_repository: >
     repo='deb http://debian.sur5r.net/i3/ trusty universe'
     state=present
-  when: ansible_distribution == 'Ubuntu'
+  when:
+      - ansible_distribution == 'Ubuntu'
+      - ansible_distribution_major_version < 17
   tags: packages
 
 - name: install i3wm from backports
@@ -38,7 +40,9 @@
     state=latest
     update_cache=true
     allow_unauthenticated=yes
-  when: ansible_distribution == 'Ubuntu'
+  when:
+      - ansible_distribution == 'Ubuntu'
+      - ansible_distribution_major_version < 17
   with_items:
     - "{{ i3_packages_unauthenticated }}"
   register: i3_packages_output

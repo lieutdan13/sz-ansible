@@ -19,3 +19,4 @@
       # Window management
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }
+      - { role: roles-next/desktop, tags: desktop }

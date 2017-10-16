@@ -14,10 +14,16 @@
   debug:
     var: git_install_packages
 
+- name: create configuration directory
+  file:
+      path: "{{ ansible_env.HOME }}/.config/git"
+      state: directory
+      mode: 0775
+
 - name: install templates
   template: >
       src={{ item }}.j2
-      dest={{ ansible_env.HOME }}/{{ item }}
+      dest={{ ansible_env.HOME }}/.config/git/{{ item }}
       mode=640
   with_items: "{{ git_templates }}"
 

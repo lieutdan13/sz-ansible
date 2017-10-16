@@ -1,0 +1,5 @@
+---
+
+- import_tasks: do_install.yml
+  tags: desktop
+  when: desktop_do_remove | bool == False

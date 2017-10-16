@@ -3,8 +3,8 @@ git_packages:
     - gitk
 
 git_templates:
-    - .gitconfig
-    - .gitignore_global
+    - config
+    - ignore
 
 git_files:
     - .git-completion.bash

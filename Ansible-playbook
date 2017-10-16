@@ -17,6 +17,7 @@ class AnsiblePlaybook():
         self.system_deps_packages = [
             'git',
             'python',
+            'python-apt',
             'python-dev',
             'python-virtualenv',
             'python3',

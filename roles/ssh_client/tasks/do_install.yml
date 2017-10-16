@@ -14,6 +14,12 @@
 
 - debug: var=ssh_client_packages_output
 
+- name: create ssh directory
+  file:
+      path: "{{ ssh_client_dot_path }}"
+      state: directory
+      mode: 0700
+
 - name: install templates
   template: >
       src={{ item.name }}.j2
@@ -21,10 +27,3 @@
       mode={{ item.mode }}
   with_items:
     - "{{ ssh_client_templates }}"
-
-- name: add {{ ansible_env.USER }} to fuse
-  become: true
-  user: >
-    name={{ ansible_env.USER }}
-    append=true
-    groups=fuse
