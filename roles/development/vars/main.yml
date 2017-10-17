@@ -21,7 +21,7 @@ development_environment_packages:
     postgresql:
         - postgresql-client-9.3
     python:
-        - python3.4
+        - python3
         - python-virtualenv
     ruby:
         - ruby2.2
