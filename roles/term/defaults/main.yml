@@ -8,6 +8,7 @@ term_packages:
     - htop
     - httpie
     - iftop
+    - make
     - ncdu
     - ngrep
     - pv
