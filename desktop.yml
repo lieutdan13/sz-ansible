@@ -20,3 +20,4 @@
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }
       - { role: roles-next/desktop, tags: desktop }
+      - { role: roles-installed/Oefenweb.ansible-hipchat, become: true }
