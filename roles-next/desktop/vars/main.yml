@@ -1,4 +1,6 @@
 ---
 
 desktop_packages:
+    - alsa-base
     - chromium-browser
+    - pulseaudio
