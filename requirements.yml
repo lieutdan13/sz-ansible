@@ -2,3 +2,6 @@
 
 - name: Oefenweb.ansible-hipchat
   version: v2.0.7
+
+- name: angstwad.docker_ubuntu
+  version: v3.3.1
