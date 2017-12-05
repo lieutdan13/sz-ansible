@@ -5,7 +5,7 @@ global_var: "this is set via the global env"
 
 # Global overrides from docker role
 docker_group_members: "{{ ansible_user_id }}"
-apt_gnupg_curl_pkg: gnupg1-curl #For 17.04
+apt_gnupg_curl_pkg: "{{ 'gnupg1-curl' if ansible_distribution_version|version_compare('17.04', '=') else 'gnupg-curl' }}"
 pip_install_pip: false
 pip_install_setuptools: false
 pip_install_docker: false

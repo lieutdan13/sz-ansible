@@ -1,6 +1,6 @@
 ---
 
-- include: facts.yml
+- import_playbook: facts.yml
 
 - name: prepare a desktop
   hosts: localhosts

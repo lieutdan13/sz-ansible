@@ -1,5 +1,6 @@
 term_perls_path: "{{ ansible_env.HOME }}/.urxvt/ext"
 term_bin_path: "{{ ansible_env.HOME }}/bin"
+term_vundle_path: "{{ ansible_env.HOME }}/.vim/bundle"
 
 term_packages:
     - curl

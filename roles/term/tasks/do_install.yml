@@ -31,12 +31,34 @@
       - git_base_repo|default('') != ""
   tags: packages
 
+- name: mk Vundle dir
+  file: >
+      path={{ term_vundle_path }}
+      state=directory
+      mode=750
+  when: term_vundle_path != ""
+  tags:
+      - vim
+
+- name: clone Vundle repo from github
+  git: >
+      repo=https://github.com/gmarik/Vundle.vim.git
+      dest={{ term_vundle_path }}/Vundle.vim
+      accept_hostkey=yes
+  when:
+      - term_vundle_path != ""
+  tags:
+      - packages
+      - vim
+
 - name: install templates
   template: >
       src={{ item }}.j2
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
   with_items: "{{ term_templates }}"
+  tags:
+      - vim
 
 - name: install files
   copy: >
@@ -44,6 +66,8 @@
       dest={{ ansible_env.HOME }}/{{ item }}
       mode=640
   with_items: "{{ term_files }}"
+  tags:
+      - vim
 
 - name: mk bin dir
   file: >
@@ -61,4 +85,13 @@
 - name: install vundle packages
   shell: >
       echo "\n" | vim -c "VundleUpdate" -c "q" -c "q"
-  tags: packages
+  register: vundle_package_install
+  tags:
+      - packages
+      - vim
+
+- name: show output of install Vundle packages
+  debug: var=vundle_package_install
+  tags:
+      - packages
+      - vim

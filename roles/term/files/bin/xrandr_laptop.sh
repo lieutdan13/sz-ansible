@@ -8,7 +8,8 @@ EXTERNAL_OUT=""
 xrandr_out=`xrandr`
 
 PRIMARY=`echo "$xrandr_out" | grep 'primary' | awk '{ print $1 }'`
-PRIMARY_RESOLUTION="1920x1080"
+#TODO make this file a template and set this primary resolution as a variable
+PRIMARY_RESOLUTION="1600x900"
 echo "Laptop Display = $PRIMARY"
 echo "${PRIMARY} Resolution = $PRIMARY_RESOLUTION"
 echo
