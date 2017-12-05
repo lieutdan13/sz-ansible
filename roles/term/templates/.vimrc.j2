@@ -59,6 +59,10 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4
     \ set textwidth=79
 
+" Highlight trailing whitespace in RED
+highlight TrailSpace guibg=red ctermbg=darkred
+match TrailSpace /\s\+$/
+
 " 2-space tabbed files
 au BufNewFile,BufRead *.js, *.html, *.css, *.yml, *.yaml
     \ set autoindent
