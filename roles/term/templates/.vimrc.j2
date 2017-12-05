@@ -13,6 +13,8 @@ Plugin 'gmarik/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'tmhedberg/SimpylFold'          " No-BS Python code folding for Vim
 Plugin 'vim-scripts/indentpython.vim'  " An alternative indentation script for python
 Plugin 'Valloric/YouCompleteMe'        " A code-completion engine for Vim
+Plugin 'vim-syntastic/syntastic'       " Syntax checking hacks for vim
+Plugin 'nvie/vim-flake8'               " Flake8 plugin for Vim
 
 " Add all Vundle plugins here
 
@@ -53,6 +55,9 @@ set hlsearch
 " highlight trailing whitespace in RED
 highlight TrailSpace guibg=red ctermbg=darkred
 match TrailSpace /\s\+$/
+
+" highlight python
+let python_highlight_all=1
 
 " PEP8
 au BufNewFile,BufRead *.py
