@@ -38,11 +38,12 @@
 
 XTerm*faceName: PragmataPro
 XTerm*faceSize: 10
+XTerm*SaveLines: 1000000
 
 {% if term_perls_path != "" %}
 ! urxvt conf
 
-URxvt.scrollBar: false
+URxvt.scrollBar_right: true
 
 URxvt.font: xft:dejavu sans mono:medium:size=10
 URxvt.letterSpace: -1
@@ -52,7 +53,8 @@ URxvt.letterSpace: -1
 URxvt.perl-ext-common: keyboard-select,clipboard,url-select
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-r: perl:keyboard-select:search
+URxvt.keysym.M-s: perl:keyboard-select:activate
 
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
@@ -61,4 +63,13 @@ URxvt.clipboard.copycmd: xclip -i -sel clipboard
 URxvt.clipboard.pastecmd: xclip -o -sel clipboard
 
 URxvt.keysym.M-u: perl:url-select:select_next
+
+URxvt*saveLines: 1000000
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
 {% endif %}
