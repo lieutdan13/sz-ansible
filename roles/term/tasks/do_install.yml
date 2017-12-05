@@ -14,6 +14,20 @@
 - name: install packages result
   debug: var=term_install_packages_result
 
+- name: uninstall packages
+  become: true
+  apt: >
+      name={{ item }}
+      state=absent
+      update_cache=true
+      cache_valid_time=3600
+  register: term_uninstall_packages_result
+  with_items: "{{ term_uninstall_packages }}"
+  tags: packages
+
+- name: uninstall packages result
+  debug: var=term_uninstall_packages_result
+
 - name: mk urxvt-perls dir
   file: >
       path={{ term_perls_path }}

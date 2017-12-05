@@ -98,3 +98,14 @@ set encoding=utf-8
 
 " activates syntax highlighting from the start of the file
 autocmd BufEnter * :syntax sync fromstart
+
+" python with virtualenv support
+py3 << EOF
+import os
+virtualenv = os.environ.get('VIRTUAL_ENV')
+if virtualenv:
+    activate_this = os.path.join(virtualenv, 'bin', 'activate_this.py')
+    if os.path.exists(activate_this):
+        exec(compile(open(activate_this).read(), activate_this, 'exec'), {'__file__': activate_this})
+EOF
+

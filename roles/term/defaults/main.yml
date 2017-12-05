@@ -3,6 +3,8 @@ term_bin_path: "{{ ansible_env.HOME }}/bin"
 term_vundle_path: "{{ ansible_env.HOME }}/.vim/bundle"
 
 term_packages:
+    - build-essential
+    - cmake
     - curl
     - fortune
     - glances
@@ -22,6 +24,9 @@ term_packages:
     - unzip
     - wicd-curses
     - xclip
+
+term_uninstall_packages:
+    - vim-tiny
 
 term_templates:
     - .Xmodmap
