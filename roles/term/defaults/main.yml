@@ -33,6 +33,7 @@ term_templates:
     - .Xresources
     - .xinitrc
     - .vimrc
+    - bin/xrandr_laptop.sh
 
 term_files:
     - .bash_aliases
@@ -43,6 +44,8 @@ term_files:
 term_bin:
     - bin/Ansible-playbook
     - bin/randomize_mac.py
-    - bin/xrandr_laptop.sh
     - bin/xterm_colors_pacman.sh
     - bin/xterm_colors.sh
+
+term_xrandr_primary_resolution: '800x600'
+term_xrandr_custom_mode: False

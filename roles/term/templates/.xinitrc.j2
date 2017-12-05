@@ -8,9 +8,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     unset f
 fi
 
+{% if term_xrandr_custom_mode|bool -%}
 # Add xrandr modes
-xrandr --newmode "1600x900"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
-xrandr --addmode VGA-0 1600x900
+xrandr --newmode "{{ term_xrandr_primary_resolution }}"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+xrandr --addmode VGA-0 {{ term_xrandr_primary_resolution }}
+
+{% endif -%}
 
 # Organize Displays
 ~/bin/xrandr_laptop.sh

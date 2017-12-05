@@ -3,3 +3,5 @@
 development_environments:
     - docker
     - python
+
+term_xrandr_primary_resolution: '1920x1080'
