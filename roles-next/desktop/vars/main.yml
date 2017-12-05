@@ -3,4 +3,5 @@
 desktop_packages:
     - alsa-base
     - chromium-browser
+    - numlockx
     - pulseaudio
