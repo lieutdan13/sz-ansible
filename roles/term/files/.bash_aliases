@@ -360,6 +360,7 @@ function ifrestart {
 # [projects]
 alias workon_docker='source ~/.virtualenvs/docker/bin/activate'
 alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansible-playbook/bin/activate'
+alias workon_utils='source ~/.virtualenvs/utils/bin/activate'
 
 # import aliases specific to this host
 if [ -f ~/.bash_aliases.local ]; then
