@@ -7,14 +7,14 @@ EXTERNAL_OUT=""
 
 xrandr_out=`xrandr`
 
-PRIMARY=`echo "$xrandr_out" | grep 'primary' | awk '{ print $1 }'`
+PRIMARY=`echo "$xrandr_out" | grep ' connected ' | head -n1 | awk '{ print $1 }'`
 PRIMARY_RESOLUTION="{{ term_xrandr_primary_resolution }}"
 echo "Laptop Display = $PRIMARY"
 echo "${PRIMARY} Resolution = $PRIMARY_RESOLUTION"
 echo
 
 RIGHT_OF=$PRIMARY
-EXTERNALS=`echo "$xrandr_out" | grep -v 'primary' | grep 'connected' | awk '{ print $1 }'`
+EXTERNALS=`echo "$xrandr_out" | grep -Ev "^${PRIMARY}\s" | grep 'connected' | awk '{ print $1 }'`
 for EXTERNAL_DEVICE in $EXTERNALS; do
     echo "External Display: $EXTERNAL_DEVICE"
     echo "$xrandr_out" | grep -E "^$EXTERNAL_DEVICE connected" > /dev/null
