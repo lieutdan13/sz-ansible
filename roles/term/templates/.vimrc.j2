@@ -12,7 +12,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'             " let Vundle manage Vundle, required
 Plugin 'tmhedberg/SimpylFold'          " No-BS Python code folding for Vim
 Plugin 'vim-scripts/indentpython.vim'  " An alternative indentation script for python
-Plugin 'Valloric/YouCompleteMe'        " A code-completion engine for Vim
+if v:version >= 740
+  Plugin 'Valloric/YouCompleteMe'        " A code-completion engine for Vim
+endif
 Plugin 'vim-syntastic/syntastic'       " Syntax checking hacks for vim
 Plugin 'nvie/vim-flake8'               " Flake8 plugin for Vim
 Plugin 'kien/ctrlp.vim'                " Fuzzy file, buffer, mru, tag, etc finder.
@@ -86,9 +88,11 @@ set foldlevel=99
 " enable code folding with the spacebar
 nnoremap <space> za
 
-" auto complete options
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if exists(':YcmCompleter')
+  " auto complete options
+  let g:ycm_autoclose_preview_window_after_completion=1
+  map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
 
 " split windows to the right and below
 set splitbelow
@@ -106,8 +110,9 @@ set encoding=utf-8
 " activates syntax highlighting from the start of the file
 autocmd BufEnter * :syntax sync fromstart
 
-" python with virtualenv support
-py3 << EOF
+if has("py3")
+  " python with virtualenv support
+  py3 << EOF
 import os
 virtualenv = os.environ.get('VIRTUAL_ENV')
 if virtualenv:
@@ -115,4 +120,5 @@ if virtualenv:
     if os.path.exists(activate_this):
         exec(compile(open(activate_this).read(), activate_this, 'exec'), {'__file__': activate_this})
 EOF
+endif
 
