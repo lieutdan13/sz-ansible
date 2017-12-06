@@ -67,9 +67,9 @@
 
 - name: install templates
   template: >
-      src={{ item }}.j2
-      dest={{ ansible_env.HOME }}/{{ item }}
-      mode=640
+      src={{ item.name|default(item) }}.j2
+      dest={{ ansible_env.HOME }}/{{ item.name|default(item) }}
+      mode={{ item.mode|default(640) }}
   with_items: "{{ term_templates }}"
   tags:
       - vim

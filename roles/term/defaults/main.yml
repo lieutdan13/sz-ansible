@@ -33,7 +33,7 @@ term_templates:
     - .Xresources
     - .xinitrc
     - .vimrc
-    - bin/xrandr_laptop.sh
+    - { name: 'bin/xrandr_laptop.sh', mode: '0750' }
 
 term_files:
     - .bash_aliases
