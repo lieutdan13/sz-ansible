@@ -20,5 +20,8 @@
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }
       - { role: roles-next/desktop, tags: desktop }
-      - { role: roles-installed/Oefenweb.ansible-hipchat, tags: hipchat, become: true }
+      - { role: roles-installed/Oefenweb.ansible-hipchat, tags: hipchat,
+          become: true,
+          when: hipchat_installed|default(true)|bool == true
+        }
       - { role: roles-installed/angstwad.docker_ubuntu, tags: docker, become: true }
