@@ -175,6 +175,11 @@ function sba {
     source $_Ansible_dotfiles_path/roles/term/files/.bash_aliases
 }
 
+# [dba]
+function sqitch {
+    docker run -v $(pwd):/src -w /src --rm docteurklein/sqitch:pgsql "$@"
+}
+
 # [docker]
 alias dco='docker-compose'
 
