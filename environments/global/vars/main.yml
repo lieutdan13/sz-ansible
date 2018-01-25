@@ -10,3 +10,5 @@ pip_install_pip: false
 pip_install_setuptools: false
 pip_install_docker: false
 pip_install_docker_compose: false
+
+sshd_config_opts_enabled: [ 'hardened_crypto' ]

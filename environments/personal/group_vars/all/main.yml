@@ -4,7 +4,6 @@ my_var: "this is set via the local env"
 local_var: "this is set via the local env"
 
 development_environments:
-  - docker
   #- mysql
   #- npm
   #- php

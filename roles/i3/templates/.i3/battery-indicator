@@ -48,7 +48,7 @@ while [ true ]; do
             fi
         fi
     else
-        pm-powersave false
+	(command -v pm-powersave >/dev/null 2>&1 && pm-powersave) || true
         SLEEP_TIME=10
     fi
 
