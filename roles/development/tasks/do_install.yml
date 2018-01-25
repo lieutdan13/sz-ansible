@@ -1,24 +1,5 @@
 ---
 
-- name: add dockerproject GPG key
-  become: true
-  apt_key:
-    keyserver: hkp://ha.pool.sks-keyservers.net:80
-    id: 58118E89F3A912897C070ADBF76221572C52609D
-  when:
-    - ansible_distribution == 'Ubuntu'
-    - "'docker' in development_environments"
-  tags: packages
-
-- name: add dockerproject repo
-  become: true
-  apt_repository:
-    repo: deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main
-  when:
-    - ansible_distribution == 'Ubuntu'
-    - "'docker' in development_environments"
-  tags: packages
-
 - name: add brightbox ppa
   become: true
   apt_repository: >
@@ -55,19 +36,6 @@
   with_dict: "{{ development_environment_packages }}"
   register: development_environment_packages_output
   tags: packages
-
-- name: add user to docker group
-  become: true
-  user:
-    append: yes
-    groups: 'docker'
-    name: '{{ ansible_ssh_user }}'
-    state: present
-  when:
-    - "'docker' in development_environments"
-  tags:
-    - users
-    - permissions
 
 - name: show installation output
   debug: var=development_environment_packages_output
