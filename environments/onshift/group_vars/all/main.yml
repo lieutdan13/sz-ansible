@@ -3,4 +3,5 @@
 development_environments:
     - python
 
+sshd_installed: False
 term_xrandr_primary_resolution: '1920x1080'
