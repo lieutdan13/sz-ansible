@@ -21,8 +21,5 @@ development_environment_packages:
     python:
         - python3
         - python-virtualenv
-    ruby:
-        - ruby2.2
-        - ruby2.2-dev
     sqlite:
         - sqlite3

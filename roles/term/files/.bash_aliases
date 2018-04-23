@@ -417,7 +417,3 @@ fi
 if ! echo $PATH | grep -q "$HOME/.composer/vendor/bin"; then
     export PATH=$PATH:$HOME/.composer/vendor/bin
 fi
-
-if ! echo $PATH | grep -q "$HOME/.gem/ruby/2.2.0/bin"; then
-    export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
-fi

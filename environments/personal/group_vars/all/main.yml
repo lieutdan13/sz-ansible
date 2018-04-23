@@ -7,7 +7,6 @@ development_environments:
   #- mysql
   #- npm
   #- php
-  #- ruby
   #- sqlite
 
 hipchat_installed: False
