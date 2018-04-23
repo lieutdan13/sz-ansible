@@ -9,17 +9,18 @@ class AnsiblePlaybook():
     def __init__(self):
         ''' initialize the object '''
 
-        self.pip_requirements = ['ansible', 'Jinja2']
+        self.pip_preinstall_requirements = ['pip', 'setuptools']
+        self.pip_requirements = ['ansible<2.5', 'Jinja2<2.9']
         self.system_deps_packages = [
             'git',
             'python',
             'python-apt',
             'python-dev',
             'python-virtualenv',
-            'python3',
         ]
 
         self.venv_dir = os.path.join(os.environ['HOME'], '.virtualenvs/sz-Ansible-playbook')
+        self.python_version = 'python'
 
         os.environ = AnsiblePlaybook.get_clean_env()
 
@@ -63,14 +64,14 @@ class AnsiblePlaybook():
             except Exception as e:
                 print(e)
 
-    def _virtualenv_make(self, venv_dir):
+    def _virtualenv_make(self, python_version, venv_dir):
         ''' make a virtualenv in the specified directory '''
 
         error = 0
 
         if venv_dir:
             os.makedirs(venv_dir, mode=0o755, exist_ok=True)
-            error = os.system("virtualenv {}".format(venv_dir))
+            error = os.system("virtualenv -p {} {}".format(python_version, venv_dir))
         else:
             error = 1
 
@@ -86,6 +87,7 @@ class AnsiblePlaybook():
             exec(code, dict(__file__=activate_path))
 
         if install:
+            subprocess.call(shlex.split('pip install --upgrade {}'.format(' '.join(self.pip_preinstall_requirements))))
             subprocess.call(shlex.split('pip install --upgrade {}'.format(' '.join(self.pip_requirements))))
 
     def _system_deps(self):
@@ -162,7 +164,7 @@ class AnsiblePlaybook():
         ''' create and load a python virtualenv into current env '''
 
         if not os.path.exists(self.venv_dir):
-            self._virtualenv_make(self.venv_dir)
+            self._virtualenv_make(self.python_version, self.venv_dir)
         self._virtualenv_activate(self.venv_dir)
 
     @staticmethod
