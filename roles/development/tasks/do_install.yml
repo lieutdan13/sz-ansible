@@ -2,10 +2,10 @@
 
 - name: install development packages on ubuntu
   become: true
-  apt: >
-    name={{ item }}
-    state=latest
-    update_cache=true
+  apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: true
   when: ansible_distribution == 'Ubuntu'
   with_items:
     - "{{ development_packages }}"
@@ -17,13 +17,13 @@
 
 - name: install development environment packages
   become: true
-  apt: >
-    name={{ item.value }}
-    state=latest
-    update_cache=true
+  apt:
+      name: "{{ item.value }}"
+      state: latest
+      update_cache: true
   when:
     - ansible_distribution == 'Ubuntu'
-    - item.key in development_environments
+    - "item.key in development_environments"
   with_dict: "{{ development_environment_packages }}"
   register: development_environment_packages_output
   tags: packages
