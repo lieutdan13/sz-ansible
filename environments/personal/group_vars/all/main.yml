@@ -10,7 +10,5 @@ development_environments:
   #- php
   #- sqlite
 
-hipchat_installed: False
-
 term_xrandr_primary_resolution: '1600x900'
 term_xrandr_custom_mode: True

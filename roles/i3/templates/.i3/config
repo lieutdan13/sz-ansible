@@ -168,11 +168,5 @@ client.focused_inactive #1C1C1C  #1C1C1C  #E8E8D3
 client.unfocused        #1C1C1C  #1C1C1C  #E8E8D3  #1C1C1C
 client.urgent           #799d6a  #1C1C1C  #E8E8D3
 
-# custom loads
-assign [class="^Gvim$"] 2
-assign [class="^Gjenkins$"] 4
-assign [class="^Firefox$"] 5
-assign [class="^hipchat$"] 6
-
 # execute
 exec_always $HOME/.i3/battery-indicator
