@@ -21,3 +21,4 @@
       - { role: i3, tags: i3 }
       - { role: roles-next/desktop, tags: desktop }
       - { role: roles-installed/angstwad.docker_ubuntu, tags: docker, become: true }
+      - { role: roles-installed/oefenweb.virtualbox, tags: virtualbox, become: true }
