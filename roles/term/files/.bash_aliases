@@ -182,6 +182,7 @@ function sqitch {
 
 # [docker]
 alias dco='docker-compose'
+alias dcoe='docker-compose exec'
 
 # [git]
 alias g='git'

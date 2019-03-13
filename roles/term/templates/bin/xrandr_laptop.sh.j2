@@ -13,7 +13,7 @@ echo "Laptop Display = $PRIMARY"
 echo "${PRIMARY} Resolution = $PRIMARY_RESOLUTION"
 echo
 
-RIGHT_OF=$PRIMARY
+LEFT_OF=$PRIMARY
 EXTERNALS=`echo "$xrandr_out" | grep -Ev "^${PRIMARY}\s" | grep 'connected' | awk '{ print $1 }'`
 for EXTERNAL_DEVICE in $EXTERNALS; do
     echo "External Display: $EXTERNAL_DEVICE"
@@ -23,9 +23,9 @@ for EXTERNAL_DEVICE in $EXTERNALS; do
     if [ $EXTERNAL_CONNECTED -eq 0 ]; then
         echo "${EXTERNAL_DEVICE} Connected: yes"
         echo "${EXTERNAL_DEVICE} Resolution: auto"
-        echo "${EXTERNAL_DEVICE} Position: right of $RIGHT_OF"
-        EXTERNAL_OUT="${EXTERNAL_OUT} --output $EXTERNAL_DEVICE --auto --right-of $RIGHT_OF"
-        RIGHT_OF=$EXTERNAL_DEVICE
+        echo "${EXTERNAL_DEVICE} Position: left of $LEFT_OF"
+        EXTERNAL_OUT="${EXTERNAL_OUT} --output $EXTERNAL_DEVICE --auto --left-of $LEFT_OF"
+        LEFT_OF=$EXTERNAL_DEVICE
     else
         echo "${EXTERNAL_DEVICE} Connected: no"
         EXTERNAL_OUT="${EXTERNAL_OUT} --output $EXTERNAL_DEVICE --off"
