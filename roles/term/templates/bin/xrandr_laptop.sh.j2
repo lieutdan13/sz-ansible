@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+LAYOUT=$1
+
+if [ "$LAYOUT" == "" ]; then
+    # Detect if screens are attached
+    xrandr | grep ' connected ' | grep -v 'primary' > /dev/null
+    if [ $? -eq 0 ]; then
+        LAYOUT=work
+    else
+        LAYOUT=laptop
+    fi
+    echo "Layout detected: $LAYOUT"
+fi
+
+if [ -f "$HOME/.screenlayout/$LAYOUT.sh" ]; then
+    $HOME/.screenlayout/$LAYOUT.sh &
+    exit
+fi
+
 # TODO: pipe all greps to true and compare to an empty string
 #set -euo pipefail
 
@@ -9,6 +27,9 @@ xrandr_out=`xrandr`
 
 PRIMARY=`echo "$xrandr_out" | grep ' connected ' | head -n1 | awk '{ print $1 }'`
 PRIMARY_RESOLUTION="{{ term_xrandr_primary_resolution }}"
+PRIMARY_POSITION_X=0
+PRIMARY_POSITION_Y=0
+
 echo "Laptop Display = $PRIMARY"
 echo "${PRIMARY} Resolution = $PRIMARY_RESOLUTION"
 echo
@@ -21,10 +42,24 @@ for EXTERNAL_DEVICE in $EXTERNALS; do
     EXTERNAL_CONNECTED=$?
 
     if [ $EXTERNAL_CONNECTED -eq 0 ]; then
+        if [ "$EXTERNAL_DEVICE" == "DP-1-1" ]; then
+            ROTATION=left
+            POSITION="1920x0"
+            PRIMARY_POSITION_X="$PRIMARY_POSITION_X+1920"
+        else
+            ROTATION=normal
+            POSITION=0x0
+            PRIMARY_POSITION_X="$PRIMARY_POSITION_X+1920"
+        fi
         echo "${EXTERNAL_DEVICE} Connected: yes"
         echo "${EXTERNAL_DEVICE} Resolution: auto"
         echo "${EXTERNAL_DEVICE} Position: left of $LEFT_OF"
-        EXTERNAL_OUT="${EXTERNAL_OUT} --output $EXTERNAL_DEVICE --auto --left-of $LEFT_OF"
+        echo "${EXTERNAL_DEVICE} Rotation: $ROTATION"
+
+        EXTERNAL_OUT="${EXTERNAL_OUT} --output $EXTERNAL_DEVICE --auto --left-of $LEFT_OF --rotate $ROTATION"
+	if [ "$POSITION" != "" ]; then
+            EXTERNAL_OUT="${EXTERNAL_OUT} --pos $POSITION"
+        fi
         LEFT_OF=$EXTERNAL_DEVICE
     else
         echo "${EXTERNAL_DEVICE} Connected: no"

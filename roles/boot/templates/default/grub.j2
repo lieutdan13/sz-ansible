@@ -4,8 +4,7 @@
 #   info -f grub -n 'Simple configuration'
 
 GRUB_DEFAULT=0
-GRUB_HIDDEN_TIMEOUT={{ boot_grub_hidden_timeout }}
-GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_TIMEOUT_STYLE=hidden
 GRUB_TIMEOUT={{ 0 if boot_grub_hidden_timeout > 0 else 2 }}
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
 GRUB_CMDLINE_LINUX_DEFAULT="{{ boot_grub_cmdline_linux_default }}"

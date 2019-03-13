@@ -276,7 +276,7 @@ start_wicd() {
 
 disconnect_laptop() {
     sudo service wicd restart
-    ~/bin/xrandr_laptop.sh
+    ~/bin/xrandr_laptop.sh $1
 }
 
 swap_procs() {
@@ -322,7 +322,7 @@ function passman_mount {
 
 # [func]
 function check_ulimits {
-    for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2  
+    for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2
 }
 
 function check_sockets {
@@ -366,6 +366,7 @@ function ifrestart {
 
 # [projects]
 alias workon_docker='source ~/.virtualenvs/docker/bin/activate'
+alias workon_docker2.7='source ~/.virtualenvs/docker_python2.7/bin/activate'
 alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansible-playbook/bin/activate'
 alias workon_utils='source ~/.virtualenvs/utils/bin/activate'
 

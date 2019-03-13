@@ -99,6 +99,9 @@ if exists(':YcmCompleter')
   map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 endif
 
+" map CTRL+m to run pydocstring
+nmap <silent> <C-m> <Plug>(pydocstring)
+
 " split windows to the right and below
 set splitbelow
 set splitright
