@@ -3,12 +3,11 @@
 - name: install packages
   become: true
   apt: >
-      name={{ item }}
+      name={{ term_packages }}
       state=latest
       update_cache=true
       cache_valid_time=3600
   register: term_install_packages_result
-  with_items: "{{ term_packages }}"
   tags: packages
 
 - name: install packages result
@@ -54,6 +53,12 @@
   tags:
       - vim
 
+- name: mk bin dir
+  file: >
+      path={{ term_bin_path }}
+      state=directory
+      mode=750
+
 - name: clone Vundle repo from github
   git: >
       repo=https://github.com/gmarik/Vundle.vim.git
@@ -82,12 +87,6 @@
   with_items: "{{ term_files }}"
   tags:
       - vim
-
-- name: mk bin dir
-  file: >
-      path={{ term_bin_path }}
-      state=directory
-      mode=750
 
 - name: install bin
   copy: >
