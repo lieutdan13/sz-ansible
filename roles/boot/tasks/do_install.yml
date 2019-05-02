@@ -21,5 +21,8 @@
     mode: 644
     owner: root
     group: root
+  when:
+      - ansible_distribution == 'Ubuntu'
+      - ansible_distribution_major_version|int < 17
   tags:
     - templates

@@ -20,7 +20,10 @@
       - { role: xorg, tags: xorg }
       - { role: i3, tags: i3 }
       - { role: roles-next/desktop, tags: desktop }
-      - { role: roles-installed/angstwad.docker_ubuntu, tags: docker, become: true }
+      - { role: roles-installed/angstwad.docker_ubuntu,
+          tags: docker,
+          apt_repository: "{{ docker_apt_repository | default(omit) }}",
+          become: true }
       - { role: roles-installed/oefenweb.virtualbox,
           tags: virtualbox,
           when: virtualbox_installed|default(False)|bool,
