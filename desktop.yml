@@ -5,7 +5,6 @@
 - name: prepare a desktop
   hosts: localhosts
   roles:
-      - { role: secrets, tags: [always,secrets] }
       - { role: apt_get_upgrade, tags: apt_get_upgrade }
       - { role: term, tags: term }
       - { role: sshd, tags: sshd,

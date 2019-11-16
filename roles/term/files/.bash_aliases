@@ -183,6 +183,8 @@ function sqitch {
 # [docker]
 alias dco='docker-compose'
 alias dcoe='docker-compose exec'
+alias dcolf='docker-compose logs -f'
+alias dcou='docker-compose up -d'
 
 # [git]
 alias g='git'
@@ -252,6 +254,16 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# [python]
+alias py27='python2.7'
+alias black160='black --line-length 160'
+
+pyformat() {
+    path_arg=$1
+    black -l160 $path_arg
+    2to3-2.7 --write --nobackups $path_arg
+}
 
 # [sysadmin]
 Sysadmin_au() {
@@ -369,6 +381,18 @@ alias workon_docker='source ~/.virtualenvs/docker/bin/activate'
 alias workon_docker2.7='source ~/.virtualenvs/docker_python2.7/bin/activate'
 alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansible-playbook/bin/activate'
 alias workon_utils='source ~/.virtualenvs/utils/bin/activate'
+alias utils='workon_utils'
+alias workon_afa='workon_utils; cd ~/projects/AFishingAddiction.github.io'
+
+alias metabase='docker container stop metabase; docker container rm metabase; docker run -d -p 3000:3000 -v ~/metabase-data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" --name metabase metabase/metabase && sleep 8 && chromium-browser 0.0.0.0:3000'
+
+# [X11]
+alias laptop='~/bin/xrandr_laptop.sh laptop'
+alias projector='~/bin/xrandr_laptop.sh left'
+alias desk='~/bin/xrandr_laptop.sh'
+
+# [bluetooth]
+alias audio='headphones'
 
 # import aliases specific to this host
 if [ -f ~/.bash_aliases.local ]; then
@@ -412,6 +436,10 @@ else \
   # @2 - Prompt when not in GIT repo
   echo " '$Color_Off$PathShort$Cyan' ]'$Color_Off'\n\$ "; \
 fi)'
+
+if ! echo $PATH | grep -q "$HOME/.local/bin"; then
+    export PATH=$PATH:$HOME/.local/bin
+fi
 
 if ! echo $PATH | grep -q "$HOME/bin"; then
     export PATH=$PATH:$HOME/bin
