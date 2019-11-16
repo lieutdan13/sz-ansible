@@ -2,11 +2,11 @@
 
 - name: install packages
   become: true
-  apt: >
-      name={{ term_packages }}
-      state=latest
-      update_cache=true
-      cache_valid_time=3600
+  apt:
+    name: "{{ term_packages }}"
+    state: latest
+    update_cache: true
+    cache_valid_time: 3600
   register: term_install_packages_result
   tags: packages
 
@@ -15,55 +15,54 @@
 
 - name: uninstall packages
   become: true
-  apt: >
-      name={{ item }}
-      state=absent
-      update_cache=true
-      cache_valid_time=3600
+  apt:
+    name: "{{ term_uninstall_packages }}"
+    state: absent
+    update_cache: true
+    cache_valid_time: 3600
   register: term_uninstall_packages_result
-  with_items: "{{ term_uninstall_packages }}"
   tags: packages
 
 - name: uninstall packages result
   debug: var=term_uninstall_packages_result
 
 - name: mk urxvt-perls dir
-  file: >
-      path={{ term_perls_path }}
-      state=directory
-      mode=750
+  file:
+    path: "{{ term_perls_path }}"
+    state: directory
+    mode: 0750
   when: term_perls_path != ""
 
 - name: clone urxvt-perls repo from github
-  git: >
-      repo={{ git_base_repo }}/urxvt-perls
-      dest={{ term_perls_path }}
-      accept_hostkey=yes
+  git:
+    repo: "{{ git_base_repo }}/urxvt-perls"
+    dest: "{{ term_perls_path }}"
+    accept_hostkey: yes
   when:
       - term_perls_path != ""
       - git_base_repo|default('') != ""
   tags: packages
 
 - name: mk Vundle dir
-  file: >
-      path={{ term_vundle_path }}
-      state=directory
-      mode=750
+  file:
+    path: "{{ term_vundle_path }}"
+    state: directory
+    mode: 0750
   when: term_vundle_path != ""
   tags:
       - vim
 
 - name: mk bin dir
-  file: >
-      path={{ term_bin_path }}
-      state=directory
-      mode=750
+  file:
+    path: "{{ term_bin_path }}"
+    state: directory
+    mode: 0750
 
 - name: clone Vundle repo from github
-  git: >
-      repo=https://github.com/gmarik/Vundle.vim.git
-      dest={{ term_vundle_path }}/Vundle.vim
-      accept_hostkey=yes
+  git:
+    repo: https://github.com/gmarik/Vundle.vim.git
+    dest: "{{ term_vundle_path }}/Vundle.vim"
+    accept_hostkey: yes
   when:
       - term_vundle_path != ""
   tags:
@@ -71,33 +70,32 @@
       - vim
 
 - name: install templates
-  template: >
-      src={{ item.name|default(item) }}.j2
-      dest={{ ansible_env.HOME }}/{{ item.name|default(item) }}
-      mode={{ item.mode|default(640) }}
+  template:
+    src: "{{ item.name|default(item) }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item.name|default(item) }}"
+    mode: "{{ item.mode|default(0640) }}"
   with_items: "{{ term_templates }}"
   tags:
       - vim
 
 - name: install files
-  copy: >
-      src={{ item }}
-      dest={{ ansible_env.HOME }}/{{ item }}
-      mode=640
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 0640
   with_items: "{{ term_files }}"
   tags:
       - vim
 
 - name: install bin
-  copy: >
-      src={{ item }}
-      dest={{ ansible_env.HOME }}/{{ item }}
-      mode=750
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 0750
   with_items: "{{ term_bin }}"
 
 - name: install vundle packages
-  shell: >
-      echo "\n" | vim -c "VundleUpdate" -c "q" -c "q"
+  shell: echo "\n" | vim -c "VundleUpdate" -c "q" -c "q"
   register: vundle_package_install
   tags:
       - packages
