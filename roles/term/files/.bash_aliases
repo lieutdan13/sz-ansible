@@ -82,7 +82,6 @@ On_IPurple="\[\033[10;95m\]"  # Purple
 On_ICyan="\[\033[0;106m\]"    # Cyan
 On_IWhite="\[\033[0;107m\]"   # White
 
-
 # [ansible]
 # [globals]
 _Ansible_dotfiles_path="$HOME/projects/sz-ansible"
@@ -265,6 +264,9 @@ pyformat() {
     2to3-2.7 --write --nobackups $path_arg
 }
 
+# [grpc]
+alias prototool='docker run -v "$(pwd):/work" uber/prototool:latest prototool'
+
 # [sysadmin]
 Sysadmin_au() {
     u=$1
@@ -385,6 +387,9 @@ alias utils='workon_utils'
 alias workon_afa='workon_utils; cd ~/projects/AFishingAddiction.github.io'
 
 alias metabase='docker container stop metabase; docker container rm metabase; docker run -d -p 3000:3000 -v ~/metabase-data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" --name metabase metabase/metabase && sleep 8 && chromium-browser 0.0.0.0:3000'
+
+# [bash]
+alias diff='/usr/bin/diff -u --color'
 
 # [X11]
 alias laptop='~/bin/xrandr_laptop.sh laptop'

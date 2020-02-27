@@ -43,9 +43,11 @@ term_files:
 
 term_bin:
     - bin/Ansible-playbook
+    - bin/headphones
+    - bin/incognito
     - bin/randomize_mac.py
-    - bin/xterm_colors_pacman.sh
     - bin/xterm_colors.sh
+    - bin/xterm_colors_pacman.sh
 
 term_xrandr_primary_resolution: '800x600'
 term_xrandr_custom_mode: False

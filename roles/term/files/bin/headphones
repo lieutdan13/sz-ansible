@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+set -xe
+
+command=$1
+
+if [ "$command" == "" ]; then
+    command="cycle"
+fi
+
+if [ "$command" == "disconnect" ] || [ "$command" == "dis" ] || [ "$command" == "d" ] || [ "$command" == "cycle" ]; then
+    bluetoothctl disconnect 04:5D:4B:A6:14:14
+fi
+if [ "$command" == "connect" ] || [ "$command" == "conn" ] || [ "$command" == "c" ] || [ "$command" == "cycle" ]; then
+    bluetoothctl connect 04:5D:4B:A6:14:14
+fi
