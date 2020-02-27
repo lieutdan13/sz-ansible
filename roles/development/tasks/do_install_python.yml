@@ -1,0 +1,10 @@
+---
+
+- name: install python templates
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+  with_items:
+    - pydocstring/arg.txt
+    - pydocstring/multi.txt
+    - flake8

@@ -1,0 +1,9 @@
+---
+
+development_environments:
+    - python
+
+sshd_installed: False
+term_xrandr_primary_resolution: '1920x1080'
+virtualbox_installed: False
+docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu cosmic stable"

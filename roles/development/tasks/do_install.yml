@@ -34,3 +34,7 @@
 - name: include php development tasks
   include: do_install_php.yml
   when: "'php' in development_environments"
+
+- name: include python development tasks
+  include: do_install_python.yml
+  when: "'python' in development_environments"

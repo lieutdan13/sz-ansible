@@ -4,13 +4,16 @@
 [core]
     autocrlf = input
     editor = vim
-    excludesfile = /home/{{ ansible_env.USER }}/.gitignore_global
+    excludesfile = /home/{{ ansible_env.USER }}/.config/git/ignore
     whitespace = trailing-space,space-before-tab
 [color]
     ui = true
 [alias]
     br = branch
+    brage = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    cb = checkout -t -b
     ci = commit
+    clear = checkout --
     co = checkout
     dc = diff --cached
     rem = remote -vv
@@ -19,3 +22,11 @@
     last = log -l HEAD
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
     lgs = log --pretty=format:'%Cred%h%Creset %C(green)(%cd)%Creset %s...%C(blue)%an%Creset' --abbrev-commit --date=short
+    lgn = log --color --name-only
+
+    current = rev-parse --abbrev-ref HEAD
+    upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+    upstreamshort = "!f() { git upstream | sed 's/origin\\///'; }; f"
+
+    pto = "!f() { CURRENT=$(git current) && UPSTREAM=$(git upstreamshort) && git push origin $CURRENT:refs/for/$UPSTREAM; }; f"
+    sync = "!f() { UPSTREAM=$(git upstream) && git fetch origin && git reset --hard $UPSTREAM; }; f"

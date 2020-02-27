@@ -15,7 +15,7 @@
     state=present
   when:
       - ansible_distribution == 'Ubuntu'
-      - ansible_distribution_major_version < 17
+      - ansible_distribution_major_version|int < 17
   tags: packages
 
 - name: install i3wm from backports
@@ -42,7 +42,7 @@
     allow_unauthenticated=yes
   when:
       - ansible_distribution == 'Ubuntu'
-      - ansible_distribution_major_version < 17
+      - ansible_distribution_major_version|int < 17
   with_items:
     - "{{ i3_packages_unauthenticated }}"
   register: i3_packages_output
