@@ -1,9 +1,17 @@
 ---
 
-- name: install desktop packages
+- name: install desktop packages (apt)
   become: True
   apt:
       name: "{{ item }}"
       state: latest
   with_items:
       - "{{ desktop_packages }}"
+
+- name: install desktop packages (snap)
+  become: True
+  snap:
+      name: "{{ item }}"
+      state: present
+  with_items:
+      - "{{ desktop_snap_packages }}"

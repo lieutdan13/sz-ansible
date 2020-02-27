@@ -4,9 +4,14 @@ LAYOUT=$1
 
 if [ "$LAYOUT" == "" ]; then
     # Detect if screens are attached
-    xrandr | grep ' connected ' | grep -v 'primary' > /dev/null
+    xrandr | grep ' connected ' | grep 'HDMI-1' > /dev/null
     if [ $? -eq 0 ]; then
-        LAYOUT=work
+        xrandr | grep ' connected ' | grep 'DP-2' > /dev/null
+        if [ $? -eq 0 ]; then
+            LAYOUT=work
+        else
+            LAYOUT=left
+        fi
     else
         LAYOUT=laptop
     fi
