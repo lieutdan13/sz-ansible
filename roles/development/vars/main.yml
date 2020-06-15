@@ -20,6 +20,6 @@ development_environment_packages:
         - postgresql-client-9.3
     python:
         - python3
-        - python-virtualenv
+        - python3-virtualenv
     sqlite:
         - sqlite3

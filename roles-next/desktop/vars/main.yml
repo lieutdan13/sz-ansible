@@ -2,6 +2,7 @@
 
 desktop_packages:
     - alsa-base
+    - hwinfo
     - numlockx
     - pulseaudio
 

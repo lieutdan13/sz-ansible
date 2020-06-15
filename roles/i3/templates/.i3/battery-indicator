@@ -30,7 +30,7 @@ while [ true ]; do
 
     killNagBar
 
-    if [[ -n $(acpi -b | grep -i "Battery 1:.*discharging) ]]; then
+    if [[ -n $(acpi -b | grep -i "Battery 0:.*discharging") ]]; then
         (command -v pm-powersave >/dev/null 2>&1 && pm-powersave true) || true
         rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+" | head -1)
 

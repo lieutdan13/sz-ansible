@@ -1,6 +1,12 @@
 " {{ ansible_managed }}
 
 set nocompatible                       " required
+set ruler                              " show the cursor position
+set title                              " show title on the window
+set scrolloff=3                        " minimal no. of lines around cursor
+set laststatus=2                       " always show the status line
+set incsearch                          " start searching as you type
+
 if has("syntax")
   syntax on                            " activates syntax highlighting among other things
 endif
@@ -22,6 +28,8 @@ Plugin 'tpope/vim-fugitive'            " a Git wrapper so awesome, it should be 
 Plugin 'scrooloose/nerdtree'           " a file system explorer
 Plugin 'airblade/vim-gitgutter'        " shows a git diff in the 'gutter'
 Plugin 'heavenshell/vim-pydocstring'   " Generate Python docstring to your Python script file
+Plugin 'ekalinin/Dockerfile.vim'       " For Dockerfile handling and syntax highlighting
+Plugin 'sheerun/vim-polyglot'          " A collection of language packs for Vim.
 
 " Add all Vundle plugins here
 
@@ -97,6 +105,8 @@ nnoremap <space> za
 if exists(':YcmCompleter')
   " auto complete options
   let g:ycm_autoclose_preview_window_after_completion=1
+  let g:ycm_server_keep_logfiles = 1
+  let g:ycm_server_log_level = 'debug'
   map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 endif
 
@@ -161,3 +171,31 @@ if virtualenv:
 EOF
 endif
 
+function! DoPrettyXML()
+  " save the filetype so we can restore it later
+  let l:origft = &ft
+  set ft=
+  " delete the xml header if it exists. This will
+  " permit us to surround the document with fake tags
+  " without creating invalid xml.
+  1s/<?xml .*?>//e
+  " insert fake tags around the entire document.
+  " This will permit us to pretty-format excerpts of
+  " XML that may contain multiple top-level elements.
+  0put ='<PrettyXML>'
+  $put ='</PrettyXML>'
+  silent %!xmllint --format -
+  " xmllint will insert an <?xml?> header. it's easy enough to delete
+  " if you don't want it.
+  " delete the fake tags
+  2d
+  $d
+  " restore the 'normal' indentation, which is one extra level
+  " too deep due to the extra tags we wrapped around the document.
+  silent %<
+  " back to home
+  1
+  " restore the filetype
+  exe "set ft=" . l:origft
+endfunction
+command! PrettyXML call DoPrettyXML()

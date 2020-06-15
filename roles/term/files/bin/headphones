@@ -13,4 +13,5 @@ if [ "$command" == "disconnect" ] || [ "$command" == "dis" ] || [ "$command" == 
 fi
 if [ "$command" == "connect" ] || [ "$command" == "conn" ] || [ "$command" == "c" ] || [ "$command" == "cycle" ]; then
     bluetoothctl connect 04:5D:4B:A6:14:14
+    pactl set-card-profile bluez_card.04_5D_4B_A6_14_14 a2dp_sink
 fi

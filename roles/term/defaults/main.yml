@@ -22,7 +22,7 @@ term_packages:
     - tree
     - ttf-ancient-fonts
     - unzip
-    - wicd-curses
+    #- wicd-curses
     - xclip
 
 term_uninstall_packages:

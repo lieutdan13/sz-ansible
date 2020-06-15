@@ -195,6 +195,7 @@ alias gpud='git pull --rebase upstream develop'
 
 alias gpuom='git push origin master'
 alias gpuod='git push origin develop'
+alias git_config='vi ~/.config/git/config'
 
 gpuocb() {
     git push origin $(git br | grep --color=never '* ' | awk '{ print $2 }') $@
@@ -281,16 +282,6 @@ EOF
         curl https://github.com/$u.keys | sudo -u $u tee /home/$u/.ssh/authorized_key
     fi
 
-}
-
-start_wicd() {
-    sudo service wicd restart
-    wicd-curses
-}
-
-disconnect_laptop() {
-    sudo service wicd restart
-    ~/bin/xrandr_laptop.sh $1
 }
 
 swap_procs() {
@@ -384,7 +375,7 @@ alias workon_docker2.7='source ~/.virtualenvs/docker_python2.7/bin/activate'
 alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansible-playbook/bin/activate'
 alias workon_utils='source ~/.virtualenvs/utils/bin/activate'
 alias utils='workon_utils'
-alias workon_afa='workon_utils; cd ~/projects/AFishingAddiction.github.io'
+alias workon_afa='workon_utils; cd ~/projects/personal/AFishingAddiction.github.io'
 
 alias metabase='docker container stop metabase; docker container rm metabase; docker run -d -p 3000:3000 -v ~/metabase-data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" --name metabase metabase/metabase && sleep 8 && chromium-browser 0.0.0.0:3000'
 

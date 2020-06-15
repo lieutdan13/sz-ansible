@@ -3,14 +3,21 @@
 LAYOUT=$1
 
 if [ "$LAYOUT" == "" ]; then
-    # Detect if screens are attached
+    # Do I have a monitor attached to the HDMI port?
     xrandr | grep ' connected ' | grep 'HDMI-1' > /dev/null
     if [ $? -eq 0 ]; then
+        # Do I have a monitor attached to the dongle?
         xrandr | grep ' connected ' | grep 'DP-2' > /dev/null
         if [ $? -eq 0 ]; then
             LAYOUT=work
         else
-            LAYOUT=left
+            # Am I connected to my monitor at home?
+            hwinfo --monitor --short | grep "DELL ST2420L" > /dev/null
+            if [ $? -eq 0 ]; then
+                LAYOUT=right
+            else
+                LAYOUT=left
+            fi
         fi
     else
         LAYOUT=laptop
@@ -31,7 +38,7 @@ EXTERNAL_OUT=""
 xrandr_out=`xrandr`
 
 PRIMARY=`echo "$xrandr_out" | grep ' connected ' | head -n1 | awk '{ print $1 }'`
-PRIMARY_RESOLUTION="{{ term_xrandr_primary_resolution }}"
+PRIMARY_RESOLUTION="1920x1080"
 PRIMARY_POSITION_X=0
 PRIMARY_POSITION_Y=0
 
