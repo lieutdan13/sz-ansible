@@ -34,6 +34,7 @@ term_templates:
     - .xinitrc
     - .vimrc
     - { name: 'bin/xrandr_laptop.sh', mode: '0750' }
+    - { name: 'bin/backup_to_usb', mode: '0750' }
 
 term_files:
     - .bash_aliases

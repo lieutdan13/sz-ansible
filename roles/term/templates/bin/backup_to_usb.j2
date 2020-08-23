@@ -1,0 +1,34 @@
+#!/bin/env bash
+{{ ansible_managed }}
+
+set -exo pipefail
+
+USB_DEVICE_NAME=/dev/sda1
+USB_DEVICE_UUID=93faeb62-a35b-4861-860d-a57b1e9b9def
+USB_DEVICE_MOUNT=/media/dschaefer/${USB_DEVICE_UUID}
+
+
+if grep -qs $USB_DEVICE_MOUNT /proc/mounts; then
+	echo "USB Drive is mounted"
+else
+	echo "We need to mount"
+	udisksctl mount -b ${USB_DEVICE_NAME}
+fi
+
+ls -la ${USB_DEVICE_MOUNT}
+
+mkdir -p \
+	${USB_DEVICE_MOUNT}/bin \
+	${USB_DEVICE_MOUNT}/documents/personal \
+	${USB_DEVICE_MOUNT}/pictures \
+	${USB_DEVICE_MOUNT}/projects/personal
+
+rsync -av --delete ${HOME}/bin/ ${USB_DEVICE_MOUNT}/bin/
+rsync -av --delete ${HOME}/documents/personal/ ${USB_DEVICE_MOUNT}/documents/personal/
+rsync -av --delete ${HOME}/pictures/ ${USB_DEVICE_MOUNT}/pictures/
+rsync -av --delete ${HOME}/projects/personal/ ${USB_DEVICE_MOUNT}/projects/personal/
+rsync -av --delete ${HOME}/projects/sz-ansible/ ${USB_DEVICE_MOUNT}/projects/sz-ansible/
+
+udisksctl unmount -b ${USB_DEVICE_NAME}
+
+exit 1
