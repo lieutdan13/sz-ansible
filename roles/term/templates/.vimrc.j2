@@ -29,7 +29,14 @@ Plugin 'scrooloose/nerdtree'           " a file system explorer
 Plugin 'airblade/vim-gitgutter'        " shows a git diff in the 'gutter'
 Plugin 'heavenshell/vim-pydocstring'   " Generate Python docstring to your Python script file
 Plugin 'ekalinin/Dockerfile.vim'       " For Dockerfile handling and syntax highlighting
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'yuezk/vim-js'
 Plugin 'sheerun/vim-polyglot'          " A collection of language packs for Vim.
+Plugin 'sk1418/HowMuch'                " plugin to calculate visual selected mathematical formulas
+Plugin 'arecarn/vim-crunch'
+Plugin 'Konfekt/vim-alias'             " This plugin lets you define command-line abbreviations
+
+" Aliases defined here: ~/.vim/after/plugin/alias.vim
 
 " Add all Vundle plugins here
 
@@ -88,12 +95,16 @@ au BufNewFile,BufRead *.py
 au FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " 2-space tabbed files
-au BufNewFile,BufRead *.js,*.html,*.css,*.yml,*.yaml
+au BufNewFile,BufRead *.js,*.jsx,*.html,*.css,*.scss,*.sass,*.yml,*.yaml
   \ set autoindent |
   \ set expandtab |
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
   \ set tabstop=2
+
+" disable jsx highlighting using the polyglot plugin
+let g:polyglot_disabled = ['jsx']
+
 
 " enable code folding
 set foldmethod=indent

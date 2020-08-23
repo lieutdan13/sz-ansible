@@ -181,6 +181,7 @@ class AnsiblePlaybook():
             'TERM': os.environ.get('TERM', ''),
             'SSH_AGENT_PID': os.environ.get('SSH_AGENT_PID', ''),
             'SSH_AUTH_SOCK': os.environ.get('SSH_AUTH_SOCK', ''),
+            'ANSIBLE_NOCOWS': '1',
         }
 
 if __name__ == '__main__':

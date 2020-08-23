@@ -1,6 +1,6 @@
 ---
 
-i3_battery_safe_percent: 30
+i3_battery_safe_percent: 20
 i3_battery_warn_percent: 15
 i3_battery_crit_percent: 5
 

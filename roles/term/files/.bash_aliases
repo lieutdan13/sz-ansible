@@ -376,6 +376,7 @@ alias workon_dotfiles='cd ~/projects/sz-ansible && source ~/.virtualenvs/sz-Ansi
 alias workon_utils='source ~/.virtualenvs/utils/bin/activate'
 alias utils='workon_utils'
 alias workon_afa='workon_utils; cd ~/projects/personal/AFishingAddiction.github.io'
+alias workon_resume='workon_utils; cd ~/projects/personal/lieutdan13.github.io'
 
 alias metabase='docker container stop metabase; docker container rm metabase; docker run -d -p 3000:3000 -v ~/metabase-data:/metabase-data -e "MB_DB_FILE=/metabase-data/metabase.db" --name metabase metabase/metabase && sleep 8 && chromium-browser 0.0.0.0:3000'
 
