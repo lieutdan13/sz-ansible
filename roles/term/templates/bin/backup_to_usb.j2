@@ -1,5 +1,5 @@
 #!/bin/env bash
-{{ ansible_managed }}
+#{{ ansible_managed }}
 
 set -exo pipefail
 
@@ -18,6 +18,7 @@ fi
 ls -la ${USB_DEVICE_MOUNT}
 
 mkdir -p \
+	${USB_DEVICE_MOUNT}/.config \
 	${USB_DEVICE_MOUNT}/bin \
 	${USB_DEVICE_MOUNT}/documents/personal \
 	${USB_DEVICE_MOUNT}/pictures \
@@ -28,6 +29,17 @@ rsync -av --delete ${HOME}/documents/personal/ ${USB_DEVICE_MOUNT}/documents/per
 rsync -av --delete ${HOME}/pictures/ ${USB_DEVICE_MOUNT}/pictures/
 rsync -av --delete ${HOME}/projects/personal/ ${USB_DEVICE_MOUNT}/projects/personal/
 rsync -av --delete ${HOME}/projects/sz-ansible/ ${USB_DEVICE_MOUNT}/projects/sz-ansible/
+rsync -av --delete \
+	--exclude "Microsoft" \
+	--exclude "chromium" \
+	--exclude "chromium-teams" \
+	--exclude "dbeaver" \
+	--exclude "google-chrome" \
+	--exclude "onedrive" \
+	--exclude "skypeforlinux" \
+	--delete-excluded \
+	${HOME}/.config/ ${USB_DEVICE_MOUNT}/.config/
+
 
 udisksctl unmount -b ${USB_DEVICE_NAME}
 
