@@ -22,14 +22,14 @@ Best Practices used in `roles-next`:
 
 ### Install/Uninstall
 - [ ] A `tasks/main.yml` file exists with the sole purpose to use `import_tasks` on an *install* task file or an *uninstall/remove* task file
-  - For example, use a when condition of `not desktop_do_remove` in `tasks/main.yml` of the *desktop* role to install and `desktop_do_remove` in `tasks/main.yml` of the *desktop* role to uninstall.
+  - For example, use a *when* condition of `not desktop_do_remove` in `tasks/main.yml` of the *desktop* role to install and `desktop_do_remove` in `tasks/main.yml` of the *desktop* role to uninstall.
 - [ ] The default behavior for a role is to run the tasks in the `tasks/do_install.yml`
 - [ ] The tasks in `tasks/do_remove.yml` should 100% reverse the behaviour in the `tasks/do_install.yml`
 
 ### Tasks
 - [ ] Each task in the `tasks/main.yml` should have at least a *tag* with the same name as the role
 - [ ] Each task runs without any deprecation warnings
-- [ ] Avoid using default variable values in a task's when condition and instead define the default in `defaults/main.yml`
+- [ ] Avoid using default variable values in a task's *when* condition and instead define the default in `defaults/main.yml`
 - [ ] Each task is written in the true yaml format and avoid using the `>` to define task arguments
   - For example:
     ```

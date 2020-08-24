@@ -1,0 +1,9 @@
+xorg_packages:
+    - xorg
+
+xorg_templates: []
+
+xorg_files: []
+
+# Set this to True on the command line if you want to remove this role
+xorg_do_remove: False

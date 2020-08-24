@@ -1,0 +1,30 @@
+---
+
+- name: install packages
+  become: true
+  apt:
+    name: "{{ xorg_packages }}"
+    state: latest
+    update_cache: true
+  register: xorg_packages_output
+  tags: packages
+
+- name: display the output of task "install packages"
+  debug:
+    var: xorg_packages_output
+
+- name: install templates
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 640
+  with_items:
+    - "{{ xorg_templates }}"
+
+- name: install files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 640
+  with_items:
+    - "{{ xorg_files }}"

@@ -1,0 +1,11 @@
+---
+
+- name: import tasks for installation
+  import_tasks: do_install.yml
+  tags: xorg
+  when: not xorg_do_remove
+
+- name: import tasks for uninstallation
+  import_tasks: do_remove.yml
+  tags: xorg
+  when: xorg_do_remove
