@@ -107,8 +107,8 @@
       - packages
       - vim
 
-- name: compile YouCompleteMe
-  shell: ./install.py --clang-completer
+- name: compile YouCompleteMe with C languanges and TypeScript support
+  shell: ./install.py --clang-completer --ts-completer
   args:
     chdir: "{{ term_vundle_path }}/YouCompleteMe"
     creates: "{{ term_vundle_path }}/YouCompleteMe/third_party/ycmd/ycm_core.so"
