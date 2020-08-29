@@ -7,6 +7,8 @@ set scrolloff=3                        " minimal no. of lines around cursor
 set laststatus=2                       " always show the status line
 set incsearch                          " start searching as you type
 
+let mapleader = ","
+
 if has("syntax")
   syntax on                            " activates syntax highlighting among other things
 endif
@@ -154,6 +156,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" delete or replace currently selected text with default register
+" without yanking it
+nnoremap <Leader>d "_d
+xnoremap <Leader>d "_d
+xnoremap <Leader>p "_dP
 
 " set encoding to UTF-8
 set encoding=utf-8

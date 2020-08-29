@@ -19,6 +19,7 @@ ls -la ${USB_DEVICE_MOUNT}
 
 mkdir -p \
 	${USB_DEVICE_MOUNT}/.config \
+	${USB_DEVICE_MOUNT}/.screenlayout \
 	${USB_DEVICE_MOUNT}/.ssh \
 	${USB_DEVICE_MOUNT}/bin \
 	${USB_DEVICE_MOUNT}/documents/personal \
@@ -33,8 +34,10 @@ rsync -av --delete \
 	--exclude "google-chrome" \
 	--exclude "onedrive" \
 	--exclude "skypeforlinux" \
+	--exclude "teams" \
 	--delete-excluded \
 	${HOME}/.config/ ${USB_DEVICE_MOUNT}/.config/
+rsync -av --delete ${HOME}/.screenlayout/ ${USB_DEVICE_MOUNT}/.screenlayout/
 rsync -av --delete ${HOME}/.ssh/ ${USB_DEVICE_MOUNT}/.ssh/
 rsync -av --delete ${HOME}/bin/ ${USB_DEVICE_MOUNT}/bin/
 rsync -av --delete ${HOME}/documents/personal/ ${USB_DEVICE_MOUNT}/documents/personal/
