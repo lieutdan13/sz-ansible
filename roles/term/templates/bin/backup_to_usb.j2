@@ -22,6 +22,7 @@ mkdir -p \
 	${USB_DEVICE_MOUNT}/.screenlayout \
 	${USB_DEVICE_MOUNT}/.ssh \
 	${USB_DEVICE_MOUNT}/bin \
+	${USB_DEVICE_MOUNT}/documents/employment \
 	${USB_DEVICE_MOUNT}/documents/personal \
 	${USB_DEVICE_MOUNT}/pictures \
 	${USB_DEVICE_MOUNT}/projects/personal
@@ -40,6 +41,7 @@ rsync -av --delete \
 rsync -av --delete ${HOME}/.screenlayout/ ${USB_DEVICE_MOUNT}/.screenlayout/
 rsync -av --delete ${HOME}/.ssh/ ${USB_DEVICE_MOUNT}/.ssh/
 rsync -av --delete ${HOME}/bin/ ${USB_DEVICE_MOUNT}/bin/
+rsync -av --delete ${HOME}/documents/employment/ ${USB_DEVICE_MOUNT}/documents/employment/
 rsync -av --delete ${HOME}/documents/personal/ ${USB_DEVICE_MOUNT}/documents/personal/
 rsync -av --delete ${HOME}/pictures/ ${USB_DEVICE_MOUNT}/pictures/
 rsync -av --delete ${HOME}/projects/personal/ ${USB_DEVICE_MOUNT}/projects/personal/
