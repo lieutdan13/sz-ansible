@@ -2,11 +2,10 @@
 
 - name: install packages
   become: true
-  apt: >
-      name={{ item }}
-      state=present
-      update_cache=true
-  with_items: "{{ git_packages }}"
+  apt:
+    name: "{{ git_packages }}"
+    state: present
+    update_cache: true
   register: git_install_packages
   tags: packages
 
@@ -18,18 +17,18 @@
   file:
       path: "{{ ansible_env.HOME }}/.config/git"
       state: directory
-      mode: 0775
+      mode: '0775'
 
 - name: install templates
-  template: >
-      src={{ item }}.j2
-      dest={{ ansible_env.HOME }}/.config/git/{{ item }}
-      mode=0640
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.config/git/{{ item }}"
+    mode: '0640'
   with_items: "{{ git_templates }}"
 
 - name: install files
-  copy: >
-      src={{ item }}
-      dest={{ ansible_env.HOME }}/{{ item }}
-      mode=0640
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: '0640'
   with_items: "{{ git_files }}"

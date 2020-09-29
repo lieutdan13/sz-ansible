@@ -2,21 +2,20 @@
 
 - name: rm packages
   become: true
-  apt: >
-      name={{ item }}
-      state=absent
-      purge=true
-  with_items: "{{ git_packages }}"
+  apt:
+    name: "{{ git_packages }}"
+    state: absent
+    purge: true
   tags: packages
 
 - name: rm git templates
-  file: >
-      path={{ ansible_env.HOME}}/{{ item }}
-      state=absent
+  file:
+    path: "{{ ansible_env.HOME}}/{{ item }}"
+    state: absent
   with_items: "{{ git_templates }}"
 
 - name: rm git files
-  file: >
-      path={{ ansible_env.HOME}}/{{ item }}
-      state=absent
+  file:
+    path: "{{ ansible_env.HOME}}/{{ item }}"
+    state: absent
   with_items: "{{ git_files }}"
