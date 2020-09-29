@@ -12,7 +12,9 @@ class AnsiblePlaybook():
         self.pip_preinstall_requirements = ['pip', 'setuptools']
         self.pip_requirements = ['ansible', 'Jinja2']
         self.system_deps_packages = [
+            'gcc',
             'git',
+            'libssl-dev',
             'python2.7',
             'python3',
             'python3-apt',
