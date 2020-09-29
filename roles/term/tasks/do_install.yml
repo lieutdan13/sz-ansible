@@ -51,6 +51,7 @@
   when: term_vundle_path != ""
   tags:
       - vim
+      - vundle
 
 - name: mk bin dir
   file:
@@ -68,6 +69,7 @@
   tags:
       - packages
       - vim
+      - vundle
 
 - name: install templates
   template:
@@ -100,12 +102,14 @@
   tags:
       - packages
       - vim
+      - vundle
 
 - name: show output of install Vundle packages
   debug: var=vundle_package_install
   tags:
       - packages
       - vim
+      - vundle
 
 - name: compile YouCompleteMe with C languanges and TypeScript support
   shell: ./install.py --clang-completer --ts-completer
@@ -113,12 +117,17 @@
     chdir: "{{ term_vundle_path }}/YouCompleteMe"
     creates: "{{ term_vundle_path }}/YouCompleteMe/third_party/ycmd/ycm_core.so"
   register: compile_YouCompleteMe
+  when: term_install_vim_ycm
   tags:
       - packages
       - vim
+      - vundle
 
 - name: show output of compiling YouCompleteMe
-  debug: var=compile_YouCompleteMe
+  debug:
+    var: compile_YouCompleteMe
+  when: term_install_vim_ycm
   tags:
       - packages
       - vim
+      - vundle

@@ -4,6 +4,7 @@ term_vundle_path: "{{ ansible_env.HOME }}/.vim/bundle"
 
 term_packages:
     - build-essential
+    - clang # YouCompleteMe dependency
     - cmake
     - curl
     - fortune
@@ -23,11 +24,11 @@ term_packages:
     - tree
     - ttf-ancient-fonts
     - unzip
+    - vim-tiny
     #- wicd-curses
     - xclip
 
-term_uninstall_packages:
-    - vim-tiny
+term_uninstall_packages: []
 
 term_templates:
     - .Xmodmap
@@ -49,6 +50,8 @@ term_bin:
     - bin/randomize_mac.py
     - bin/xterm_colors.sh
     - bin/xterm_colors_pacman.sh
+
+term_install_vim_ycm: True
 
 term_xrandr_primary_resolution: '800x600'
 term_xrandr_custom_mode: False
