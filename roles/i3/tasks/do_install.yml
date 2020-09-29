@@ -65,21 +65,21 @@
 - debug: var=i3_packages_output
 
 - name: create a directory for screenshots
-  file: >
-    path={{ ansible_env.HOME }}/{{ i3_screenshot_directory }}
-    state=directory
-    mode=770
+  file:
+    path: "{{ ansible_env.HOME }}/{{ i3_screenshot_directory }}"
+    state: directory
+    mode: 0770
 
 - name: create .i3 dir
-  file: >
-    path={{ ansible_env.HOME }}/.i3
-    state=directory
-    mode=770
+  file:
+    path: "{{ ansible_env.HOME }}/.i3"
+    state: directory
+    mode: 0770
 
 - name: install i3 templates
-  template: >
-    src={{ item.src }}
-    dest={{ ansible_env.HOME }}/{{ item.src }}
-    mode={{ item.get('mode', 664) }}
+  template:
+    src: "{{ item.src }}.j2"
+    dest: "{{ ansible_env.HOME }}/{{ item.src }}"
+    mode: "{{ item.get('mode', 0664) }}"
   with_items:
     - "{{ i3_templates }}"

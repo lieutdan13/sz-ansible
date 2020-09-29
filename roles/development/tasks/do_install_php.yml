@@ -4,7 +4,7 @@
   copy: >
       src={{ item }}
       dest={{ ansible_env.HOME }}/{{ item }}
-      mode=750
+      mode=0750
   with_items:
     - "{{ development_php_bin }}"
 

@@ -17,7 +17,7 @@
   template:
     src: "{{ item }}.j2"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
-    mode: 640
+    mode: 0640
   with_items:
     - "{{ xorg_templates }}"
 
@@ -25,6 +25,6 @@
   copy:
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
-    mode: 640
+    mode: 0640
   with_items:
     - "{{ xorg_files }}"

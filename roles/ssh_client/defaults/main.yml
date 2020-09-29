@@ -5,9 +5,9 @@ ssh_client_packages:
     - sshfs
 
 ssh_client_templates:
-#    - { name: config, mode: '750' }
-    - { name: id_rsa, mode: '600' }
-    - { name: id_rsa.pub, mode: '644' }
-    - { name: id_ed25519, mode: '600' }
-    - { name: id_ed25519.pub, mode: '644' }
-    - { name: authorized_keys, mode: '755' }
+#    - { name: config, mode: 0750 }
+    - { name: id_rsa, mode: 0600 }
+    - { name: id_rsa.pub, mode: 0644 }
+    - { name: id_ed25519, mode: 0600 }
+    - { name: id_ed25519.pub, mode: 0644 }
+    - { name: authorized_keys, mode: 0755 }
