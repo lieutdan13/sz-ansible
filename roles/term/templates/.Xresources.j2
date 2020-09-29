@@ -1,6 +1,6 @@
 ! Color configuration
 *foreground: #E8E8D3
-*background: #1C1C1C
+*background: #000000
 
 ! colors 0-7 are normal, 8-15 bright
 
@@ -36,13 +36,18 @@
 *color7:  #E8E8D3
 *color15: #F3F3E7
 
+
+! all terminals
+*saveLines: 1000000
+*scrollBar: true
+
+! XTerm conf
+XTerm.termName: xterm-256color
 XTerm*faceName: PragmataPro
 XTerm*faceSize: 10
-XTerm*SaveLines: 1000000
 
 {% if term_perls_path != "" %}
 ! urxvt conf
-
 URxvt.scrollBar_right: true
 
 URxvt.font: xft:dejavu sans mono:medium:size=10
@@ -63,8 +68,6 @@ URxvt.clipboard.copycmd: xclip -i -sel clipboard
 URxvt.clipboard.pastecmd: xclip -o -sel clipboard
 
 URxvt.keysym.M-u: perl:url-select:select_next
-
-URxvt*saveLines: 1000000
 
 ! do not scroll with output
 URxvt*scrollTtyOutput: false

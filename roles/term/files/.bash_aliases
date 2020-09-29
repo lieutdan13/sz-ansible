@@ -233,7 +233,6 @@ fi
 # [ssh]
 #alias ssh='ssh -i $HOME/.ssh/id_ed25519 $1'
 alias ssh="TERM=xterm ssh"
-alias ssh_onshift='ssh -i $HOME/.ssh/id_onshift $1'
 
 SSH_ENV="$HOME/.ssh/env"
 start_agent() {
