@@ -7,5 +7,6 @@
   notify: grub update debug
 
 - name: grub update debug
-  debug: var=grub_update_result
+  debug:
+    var: grub_update_result
 

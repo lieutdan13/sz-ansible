@@ -5,6 +5,7 @@ desktop_packages:
     - hwinfo
     - numlockx
     - pulseaudio
+    - snap
 
 desktop_snap_packages:
     - chromium
