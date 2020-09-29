@@ -12,3 +12,6 @@ development_environments:
 
 term_xrandr_primary_resolution: '1600x900'
 term_xrandr_custom_mode: True
+
+ethernet_interface: 'enp1s12'
+wireless_interface: 'wlan0'

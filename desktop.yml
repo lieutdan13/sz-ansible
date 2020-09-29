@@ -16,7 +16,7 @@
       - { role: git, tags: git }
       - { role: development, tags: development }
       # Window management
-      - { role: roles-next/xorg }
+      - { role: roles-next/xorg, tags: xorg }
       - { role: i3, tags: i3 }
       - { role: roles-next/desktop, tags: desktop }
       - { role: roles-installed/angstwad.docker_ubuntu,

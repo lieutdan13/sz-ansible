@@ -3,8 +3,15 @@
   hosts: all
   gather_facts: true
   tasks:
-    - debug: var=inventory_hostname
+    - debug:
+        var: inventory_hostname
       tags: always
-    - debug: var=ansible_env
-      when: ansible_debug|default(False)|bool == True
+    - debug:
+        var: ansible_python_interpreter
       tags: always
+    - debug:
+        var: ansible_form_factor
+      tags: always
+#    - debug:
+#        var: hostvars[inventory_hostname]
+#      tags: always
