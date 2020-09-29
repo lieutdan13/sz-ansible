@@ -1,68 +1,39 @@
 ---
-
-- name: add backports repo
-  become: true
-  apt_repository: >
-    repo='deb http://http.debian.net/debian wheezy-backports main'
-    state=present
-  when: ansible_distribution == 'Debian'
-  tags: packages
-
 - name: add i3wm ubuntu repo
   become: true
-  apt_repository: >
-    repo='deb http://debian.sur5r.net/i3/ trusty universe'
-    state=present
+  apt_repository:
+    repo: 'deb http://debian.sur5r.net/i3/ trusty universe'
+    state: present
   when:
       - ansible_distribution == 'Ubuntu'
       - ansible_distribution_major_version|int < 17
-  tags: packages
-
-- name: install i3wm from backports
-  become: true
-  apt: >
-    name={{ item }}
-    state=latest
-    update_cache=true
-    default_release=wheezy-backports
-  when: ansible_distribution == 'Debian'
-  with_items:
-    - "{{ i3_packages }}"
   register: i3_packages_output
   tags: packages
-
-- debug: var=i3_packages_output
 
 - name: install i3 unauthenticated packages on ubuntu
   become: true
-  apt: >
-    name={{ item }}
-    state=latest
-    update_cache=true
-    allow_unauthenticated=yes
+  apt:
+    name: "{{ i3_packages_unauthenticated }}"
+    state: latest
+    update_cache: true
+    allow_unauthenticated: yes
   when:
       - ansible_distribution == 'Ubuntu'
       - ansible_distribution_major_version|int < 17
-  with_items:
-    - "{{ i3_packages_unauthenticated }}"
   register: i3_packages_output
   tags: packages
 
-- debug: var=i3_packages_output
-
-- name: install i3wm on ubuntu
+- name: install i3wm
   become: true
-  apt: >
-    name={{ item }}
-    state=latest
-    update_cache=true
-  when: ansible_distribution == 'Ubuntu'
-  with_items:
-    - "{{ i3_packages }}"
+  apt:
+    name: "{{ i3_packages }}"
+    state: latest
+    update_cache: true
   register: i3_packages_output
   tags: packages
 
-- debug: var=i3_packages_output
+- debug:
+    var: i3_packages_output
 
 - name: create a directory for screenshots
   file:

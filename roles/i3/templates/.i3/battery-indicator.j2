@@ -30,6 +30,7 @@ while [ true ]; do
 
     killNagBar
 
+{% if ansible_form_factor != "Desktop" -%}
     if [[ -n $(acpi -b | grep -i "Battery 0:.*discharging") ]]; then
         (command -v pm-powersave >/dev/null 2>&1 && pm-powersave true) || true
         rem_bat=$(acpi -b | grep -Eo "[0-9]+%" | grep -Eo "[0-9]+" | head -1)
@@ -51,6 +52,7 @@ while [ true ]; do
 	(command -v pm-powersave >/dev/null 2>&1 && pm-powersave) || true
         SLEEP_TIME=10
     fi
+{% endif %}
 
     sleep ${SLEEP_TIME}m
 

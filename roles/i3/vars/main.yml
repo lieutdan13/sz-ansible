@@ -15,3 +15,4 @@ i3_templates:
     - { src: .i3/config }
     - { src: .i3/battery-indicator, mode: '0755' }
     - { src: .i3status.conf }
+    - { src: .xinitrc }
