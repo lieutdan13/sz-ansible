@@ -14,6 +14,9 @@ if has("syntax")
 endif
 filetype off                           " required
 
+" disable jsx highlighting using the polyglot plugin
+let g:polyglot_disabled = ['jsx']
+
 set rtp+=~/.vim/bundle/Vundle.vim/     " set the runtime path to include Vundle and initialize
 call vundle#begin()
 
@@ -105,9 +108,6 @@ au BufNewFile,BufRead *.js,*.jsx,*.html,*.css,*.scss,*.sass,*.yml,*.yaml
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
   \ set tabstop=2
-
-" disable jsx highlighting using the polyglot plugin
-let g:polyglot_disabled = ['jsx']
 
 
 " enable code folding

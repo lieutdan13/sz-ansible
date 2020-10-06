@@ -1,5 +1,6 @@
 xorg_packages:
     - xorg
+    - x11-xserver-utils
 
 xorg_templates: []
 

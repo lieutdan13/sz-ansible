@@ -1,3 +1,5 @@
 ---
 
 desktop_do_remove: False
+
+desktop_distribution_packages: []

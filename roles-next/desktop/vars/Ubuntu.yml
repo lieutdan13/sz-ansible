@@ -1,0 +1,4 @@
+---
+
+desktop_distribution_packages:
+    - alsa-base

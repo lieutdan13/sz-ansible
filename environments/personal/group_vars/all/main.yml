@@ -10,6 +10,8 @@ development_environments:
   #- php
   #- sqlite
 
+docker_installed: "{{ True if ansible_memtotal_mb >= 4000 else False }}"
+
 term_xrandr_primary_resolution: '1600x900'
 term_xrandr_custom_mode: True
 

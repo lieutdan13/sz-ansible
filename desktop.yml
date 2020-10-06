@@ -18,9 +18,11 @@
       # Window management
       - { role: roles-next/xorg, tags: xorg }
       - { role: i3, tags: i3 }
+      - { role: roles-installed/snapd, tags: snapd, become: true } # TODO dependency of desktop
       - { role: roles-next/desktop, tags: desktop }
       - { role: roles-installed/angstwad.docker_ubuntu,
           tags: docker,
+          when: docker_installed|default(False)|bool,
           become: true }
       - { role: roles-installed/oefenweb.virtualbox,
           tags: virtualbox,

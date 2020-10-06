@@ -1,11 +1,10 @@
 ---
 
 desktop_packages:
-    - alsa-base
     - hwinfo
     - numlockx
     - pulseaudio
-    - snap
 
 desktop_snap_packages:
     - chromium
+    - core

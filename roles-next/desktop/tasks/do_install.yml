@@ -1,9 +1,25 @@
 ---
 
+- name: include distribution variables
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ ansible_distribution }}.yml'
+        - default.yml
+      paths:
+        - 'vars'
+
 - name: install desktop packages (apt)
   become: True
   apt:
       name: "{{ desktop_packages }}"
+      state: latest
+
+- name: install desktop distribution-specific packages (apt)
+  become: True
+  apt:
+      name: "{{ desktop_distribution_packages }}"
       state: latest
 
 - name: install desktop packages (snap)

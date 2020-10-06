@@ -1,7 +1,11 @@
 ---
 
-- name: angstwad.docker_ubuntu
-  version: v3.8.0
+- src: angstwad.docker_ubuntu
+  version: v3.8.1
 
-- name: oefenweb.virtualbox
-  version: v1.1.18
+- src: oefenweb.virtualbox
+  version: v2.0.6
+
+- src: git+https://github.com/alvistack/ansible-role-snapd
+  name: snapd
+  version: 4.4.1
