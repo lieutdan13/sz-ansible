@@ -2,10 +2,9 @@
 
 - name: remove development packages on ubuntu
   become: true
-  apt: >
-    name={{ item }}
-    state=absent
-    update_cache=true
+  apt:
+    name: "{{ development_packages }}"
+    state: absent
+    update_cache: true
   when: ansible_distribution == 'Ubuntu'
-  with_items: development_packages
   tags: packages

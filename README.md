@@ -47,3 +47,7 @@ Best Practices used in `roles-next`:
 
 ### Role Dependencies
 - [ ] If the role depends on other roles to be run first, these roles must be defined in `meta/main.yml` as dependencies.
+
+# TODO
+- [ ] Add a script for starting wireless device
+- [ ] development - install npm installer

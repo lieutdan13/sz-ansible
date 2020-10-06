@@ -1,5 +1,13 @@
 ---
 
+- name: create config directories for templates
+  file:
+    dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+    mode: '0750'
+    state: directory
+  with_items:
+    - pydocstring
+
 - name: install python templates
   template:
     src: "{{ item }}.j2"
