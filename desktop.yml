@@ -22,7 +22,10 @@
       - { role: roles-next/desktop, tags: desktop }
       - { role: roles-installed/angstwad.docker_ubuntu,
           tags: docker,
-          when: docker_installed|default(False)|bool,
+          when: [
+            docker_installed|default(False)|bool,
+            ansible_distribution == 'Ubuntu',
+          ],
           become: true }
       - { role: roles-installed/oefenweb.virtualbox,
           tags: virtualbox,

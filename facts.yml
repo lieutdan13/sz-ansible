@@ -12,6 +12,9 @@
     - debug:
         var: ansible_form_factor
       tags: always
-#    - debug:
-#        var: hostvars[inventory_hostname]
-#      tags: always
+    - debug:
+        var: hostvars[inventory_hostname]
+      tags: always
+    - debug:
+        msg: "Wireless Device: {{ ansible_interfaces|default([]) | select('match', '^w') | list | join('')}}"
+      tags: always

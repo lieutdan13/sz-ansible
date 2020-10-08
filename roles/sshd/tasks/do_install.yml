@@ -1,5 +1,13 @@
 ---
 
+- name: install sshd packages
+  become: True
+  apt:
+    name: "{{ sshd_packages }}"
+    state: latest
+  tags:
+    - packages
+
 - name: copy over ssh banner
   copy: >
       src=sshd.banner

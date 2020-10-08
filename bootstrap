@@ -1,34 +1,46 @@
 #!/usr/bin/env bash
-set -e
+set -exo pipefail
 
+apt install curl sudo
+
+mkdir -p ~/bin && cd ~/bin
 curl -o ./Ansible-playbook https://raw.githubusercontent.com/lieutdan13/sz-ansible/master/Ansible-playbook
 chmod +x Ansible-playbook
 ./Ansible-playbook --bootstrap
 
+set +x
 echo -n "Enter your email to be used for git: "
 read git_email
 echo -n "Enter your full name to be used for git: "
 read git_full_name
 echo -n "Enter your Github.com username: "
 read github_username
+echo -n "Enter your system username: "
+read system_username
+set -x
 
-mkdir -p ~/.config/git
+USER_HOME=`eval echo "~$system_username"`
+
+mkdir -p ${USER_HOME}/.config/git
 
 if [ "$git_email" != "" ]; then
-    git config --file $HOME/.config/git/config user.email $git_email
+    git config --file ${USER_HOME}/.config/git/config user.email $git_email
 fi
 if [ "$git_full_name" != "" ]; then
-    git config --file $HOME/.config/git/config user.name "$git_full_name"
+    git config --file ${USER_HOME}/.config/git/config user.name "$git_full_name"
 fi
 
-
-mkdir -p ~/projects
-cd ~/projects
-if [ ! -d ~/projects/sz-ansible ]; then
+mkdir -p ${USER_HOME}/projects
+cd ${USER_HOME}/projects
+if [ ! -d ${USER_HOME}/projects/sz-ansible ]; then
     if [ "$github_username" != "" ]; then
         clone_user="$github_username@"
     else
         clone_user=""
     fi
-    git clone https://${clone_user}github.com/lieutdan13/sz-ansible
+    git clone -o origin-http https://${clone_user}github.com/lieutdan13/sz-ansible
 fi
+
+chown -R ${system_username}.${system_username} ${USER_HOME}
+
+echo "%${system_username} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${system_username}

@@ -24,6 +24,7 @@ term_packages:
     - tree
     - ttf-ancient-fonts
     - unzip
+    - vim
     - vim-tiny
     #- wicd-curses
     - xclip
