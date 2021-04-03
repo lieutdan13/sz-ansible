@@ -3,3 +3,4 @@
 
 [localhosts:vars]
 inventory_type=local
+term_install_vim_ycm=false

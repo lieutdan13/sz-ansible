@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -exo pipefail
 
+if [ `whoami` != "root" ]; then echo "You must run this script as root"; exit; fi
+
 apt install curl sudo
 
 mkdir -p ~/bin && cd ~/bin
@@ -44,3 +46,4 @@ fi
 chown -R ${system_username}.${system_username} ${USER_HOME}
 
 echo "%${system_username} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${system_username}
+chmod 0440 /etc/sudoers.d/${system_username}

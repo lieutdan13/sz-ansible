@@ -1,0 +1,14 @@
+---
+
+- import_playbook: facts.yml
+
+- name: prepare a desktop
+  hosts: localhosts
+  roles:
+      - { role: apt_get_upgrade, tags: apt_get_upgrade }
+      - { role: term, tags: term }
+      - { role: sudo, tags: sudo }
+        #- { role: ssh_client, tags: ssh_client } # TODO customize the kets to be unique
+      - { role: git, tags: git }
+      - { role: development, tags: development }
+      - { role: roles-installed/snapd, tags: snapd, become: true } # TODO dependency of desktop

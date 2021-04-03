@@ -16,7 +16,7 @@ term_packages:
     - ncdu
     - ngrep
     - pv
-    - python3.7-dev # YouCompleteMe dependency
+    - python3-dev # YouCompleteMe dependency
     - rxvt-unicode-256color
     - sshpass
     - strace
